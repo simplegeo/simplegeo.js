@@ -122,4 +122,4 @@ var simplegeo = (function($) {
     return {
         Client: Client
     }
-})(jQuery)
+})(jQuery);
