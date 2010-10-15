@@ -189,7 +189,9 @@ var simplegeo = (function($) {
         densityHour: '/density/day/hour/lat,lon.json',
         contains: '/contains/lat,lon.json',
         overlaps: '/overlaps/south,west,north,east.json',
-        boundary: '/boundary/id.json'
+        boundary: '/boundary/id.json',
+        locate: '/locate/ip.json',
+        locateSelf: '/locate.json'
     }
 
     var Client = function(token) {
@@ -301,8 +303,18 @@ var simplegeo = (function($) {
             path = endpoints.boundary;
             path = path.replace('id', id);
             return this.request(path, {}, callback);
-        }
+        },
 
+        getLocation: function(ipAddress, callback) {
+            var path;
+            if (callback === undefined) {
+                callback = ipAddress;
+                path = endpoints.locateSelf;
+            } else {
+                path = endpoints.locate.replace('ip', ipAddress);
+            }
+            return this.request(path, {}, callback);
+       }
     }
     return {
         Client: Client

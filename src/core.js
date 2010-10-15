@@ -13,7 +13,9 @@ var simplegeo = (function($) {
         densityHour: '/density/day/hour/lat,lon.json',
         contains: '/contains/lat,lon.json',
         overlaps: '/overlaps/south,west,north,east.json',
-        boundary: '/boundary/id.json'
+        boundary: '/boundary/id.json',
+        locate: '/locate/ip.json',
+        locateSelf: '/locate.json'
     }
 
     var Client = function(token) {
@@ -28,8 +30,17 @@ var simplegeo = (function($) {
                 url: apiUrl + path,
                 dataType: 'json',
                 data: data,
-                success: function(data) {
-                    callback(data);
+                success: function(response) {
+                    if (response.error) {
+                      var error = new Error(response.message);
+                      error.code = response.code;
+                      callback(error);
+                    } else {
+                      callback(null, response.data);
+                    }
+                },
+                error: function(xhr, ajaxOptions, err) {
+                    callback(err);
                 }
             });
         },
@@ -116,8 +127,18 @@ var simplegeo = (function($) {
             path = endpoints.boundary;
             path = path.replace('id', id);
             return this.request(path, {}, callback);
-        }
+        },
 
+        getLocation: function(ipAddress, callback) {
+            var path;
+            if (callback === undefined) {
+                callback = ipAddress;
+                path = endpoints.locateSelf;
+            } else {
+                path = endpoints.locate.replace('ip', ipAddress);
+            }
+            return this.request(path, {}, callback);
+       }
     }
     return {
         Client: Client
