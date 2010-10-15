@@ -204,8 +204,17 @@ var simplegeo = (function($) {
                 url: apiUrl + path,
                 dataType: 'json',
                 data: data,
-                success: function(data) {
-                    callback(data);
+                success: function(response) {
+                    if (response.error) {
+                      var error = new Error(response.message);
+                      error.code = response.code;
+                      callback(error);
+                    } else {
+                      callback(null, response.data);
+                    }
+                },
+                error: function(xhr, ajaxOptions, err) {
+                    callback(err);
                 }
             });
         },
