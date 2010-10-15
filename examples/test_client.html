@@ -11,7 +11,10 @@
 <script type="text/javascript">
 
 client = new simplegeo.Client("j2RpV7pQueUht9L7eSktaF2jW2ahUARU");
-client.getContains(37.776549, -122.406406, testData);
+client.getLocation(testData);
+
+// This one should error, as there is no location for this IP
+client.getLocation("127.0.0.1", testData);
 
 function testData(err, data) {
 
