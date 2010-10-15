@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="../build/simplegeo.min.js"></script> 
+<script type="text/javascript" src="http://github.com/simplegeo/polymaps/raw/v2.2.0/polymaps.js"></script> 
+</head>
+
+<body>
+<script type="text/javascript">
+client = new simplegeo.Client("j2RpV7pQueUht9L7eSktaF2jW2ahUARU");
+client.getLocation(loadMap);
+
+var po = org.polymaps;
+
+function loadMap(err, data) {
+
+    if (err) { 
+        console.error(err)
+
+    } else {
+        lat = data['geometry']['coordinates'][1];
+        lon = data['geometry']['coordinates'][0];
+
+        var map = po.map()
+            .container(document.body.appendChild(po.svg("svg")))
+            .add(po.interact())
+            .add(po.hash())
+            .center({lat: lat, lon: lon})
+            .zoom(15)
+            .zoomRange([12, 16]);
+
+
+
+        map.add(po.image()
+            .url(po.url("http://{S}tile.cloudmade.com"
+            + "/1a1b06b230af4efdbb989ea99e9841af"
+            + "/9683/256/{Z}/{X}/{Y}.png")
+            .hosts(["a.", "b.", "c.", ""])));
+
+    }
+}
+
+
+</script>
+</body>
+</html>
