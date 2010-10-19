@@ -1,3 +1,4 @@
+require 'rubygems'
 require 'rake'
 
 ROOT            = File.expand_path(File.dirname(__FILE__))
@@ -6,8 +7,10 @@ OUTPUT_MINIFIED = "build/simplegeo.min.js"
 
 task :default => :merge
 
+directory "build"
+
 desc "Merges the JavaScript sources."
-task :merge do
+task :merge => [:build] do
   require "sprockets"
   # require File.join(ROOT, "vendor", "sprockets")
 
@@ -26,9 +29,10 @@ end
 
 desc "Minifies the JavaScript source."
 task :minify => [:merge] do
-  yuicompressor = File.join(ROOT, "vendor", "yuicompressor-2.4.2.jar")
-  sh 'java', '-jar', yuicompressor, '-v',
-    OUTPUT_MERGED, '-o', OUTPUT_MINIFIED
+#  yuicompressor = File.join(ROOT, "vendor", "yuicompressor-2.4.2.jar")
+#  sh 'java', '-jar', yuicompressor, '-v',
+#    OUTPUT_MERGED, '-o', OUTPUT_MINIFIED
+   sh 'yui-compressor', '-v', OUTPUT_MERGED, '-o', OUTPUT_MINIFIED
 end
 
 #desc "Check the JavaScript source with JSLint."
