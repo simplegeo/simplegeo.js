@@ -1,8 +1,11 @@
-#!/bin/sh
+#!/bin/sh -x
 # This file is executed inside of pbuilder to build in Hudson
 
-apt-get install rake rubygems yui-compressor
+cd $1
+apt-get update
+apt-get install rake rubygems yui-compressor -y -f --force-yes
+apt-get install -y -f --force-yes
 
-ruby -rrubygems -e 'Gem.available?("sprockets") or exit(1)' || gem install sprockets;
+gem install sprockets;
 
 rake minify
