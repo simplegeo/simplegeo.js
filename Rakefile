@@ -17,7 +17,7 @@ def combine(src, dest)
 end
 
 def compress(src, dest)
-   sh 'yuicompressor', '-v', src, '-o', dest
+   sh 'yui-compressor', '-v', src, '-o', dest
 end
 
 task :default => :merge
