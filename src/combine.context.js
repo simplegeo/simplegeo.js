@@ -3,7 +3,7 @@ var simplegeo = (function(window, undefined){
 
 var simplegeo = (function($){
 //= require "core"
-//= require "storage"
+//= require "context"
 return simplegeo
 })(jQuery);
 
