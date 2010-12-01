@@ -12,4 +12,4 @@ gem install sprockets;
 
 rake minify
 
-chown -R hudsonslave build 
+chown -R $SUDO_UID:$SUDO_GID build
