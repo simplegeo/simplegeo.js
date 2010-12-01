@@ -42,6 +42,4 @@ Client.prototype = {
    }
 };
 
-var simplegeo = {
-    Client: Client
-};
+simplegeo.Client = Client;

@@ -28,12 +28,14 @@ desc "Merges the JavaScript sources."
 task :merge => [:build] do
     combine "src/combine.js", "build/simplegeo.js"
     combine "src/combine.context.js", "build/simplegeo.context.js"
+    combine "src/combine.places.js", "build/simplegeo.places.js"
 end
 
 desc "Minifies the JavaScript source."
 task :minify => [:merge] do
     compress "build/simplegeo.js", "build/simplegeo.min.js"
     compress "build/simplegeo.context.js", "build/simplegeo.context.min.js"
+    compress "build/simplegeo.places.js", "build/simplegeo.places.min.js"
 end
 
 #desc "Check the JavaScript source with JSLint."

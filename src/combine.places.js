@@ -7,6 +7,6 @@ if (window.simplegeo === undefined) {
 
 (function(simplegeo,$){
 //= require "core"
-//= require "context"
+//= require "places"
 })(window.simplegeo, jQuery);
 })(window);
