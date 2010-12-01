@@ -27,6 +27,7 @@ directory "build"
 desc "Merges the JavaScript sources."
 task :merge => [:build] do
     combine "src/combine.js", "build/simplegeo.js"
+    combine "src/combine.storage.js", "build/simplegeo.storage.js"
     combine "src/combine.context.js", "build/simplegeo.context.js"
     combine "src/combine.places.js", "build/simplegeo.places.js"
 end
@@ -34,6 +35,7 @@ end
 desc "Minifies the JavaScript source."
 task :minify => [:merge] do
     compress "build/simplegeo.js", "build/simplegeo.min.js"
+    compress "build/simplegeo.storage.js", "build/simplegeo.storage.min.js"
     compress "build/simplegeo.context.js", "build/simplegeo.context.min.js"
     compress "build/simplegeo.places.js", "build/simplegeo.places.min.js"
 end

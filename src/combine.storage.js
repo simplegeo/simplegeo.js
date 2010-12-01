@@ -7,5 +7,6 @@ if (window.simplegeo === undefined) {
 
 (function(simplegeo,$){
 //= require "core"
+//= require "storage"
 })(window.simplegeo, jQuery);
 })(window);
