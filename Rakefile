@@ -31,33 +31,28 @@ def compress(src, dest)
    sh 'yui-compressor', '-v', src, '-o', dest
 end
 
-task :default => :merge
+def bundle_template(template, name, includes)
+    render "src/#{template}.js.erb", "templates/#{template}.#{name}.js", includes
+    combine "templates/#{template}.#{name}.js", "build/#{name}.js"
+    compress "build/#{name}.js", "build/#{name}.min.js"
+end
+
+def bundle(name, includes)
+    bundle_template "combine", name, includes
+    bundle_template "combine.jq", "#{name}.jq", includes
+end
+
+task :default => :minify
 
 directory "build"
 directory "templates"
 
-desc "Compile the JavaScript combiners."
-task :render => [:build, :templates] do
-    render "src/combine.js.erb", "templates/simplegeo.js", []
-    render "src/combine.js.erb", "templates/simplegeo.storage.js", ["storage"]
-    render "src/combine.js.erb", "templates/simplegeo.places.js", ["places"]
-    render "src/combine.js.erb", "templates/simplegeo.context.js", ["context"]
-end
-
-desc "Merges the JavaScript sources."
-task :merge => [:render] do
-    combine "templates/simplegeo.js", "build/simplegeo.js"
-    combine "templates/simplegeo.storage.js", "build/simplegeo.storage.js"
-    combine "templates/simplegeo.places.js", "build/simplegeo.places.js"
-    combine "templates/simplegeo.context.js", "build/simplegeo.context.js"
-end
-
 desc "Minifies the JavaScript source."
-task :minify => [:merge] do
-    compress "build/simplegeo.js", "build/simplegeo.min.js"
-    compress "build/simplegeo.storage.js", "build/simplegeo.storage.min.js"
-    compress "build/simplegeo.places.js", "build/simplegeo.places.min.js"
-    compress "build/simplegeo.context.js", "build/simplegeo.context.min.js"
+task :minify => [:build, :templates] do
+    bundle "simplegeo", []
+    bundle "simplegeo.storage", ["storage"]
+    bundle "simplegeo.context", ["context"]
+    bundle "simplegeo.places", ["places"]
 end
 
 #desc "Check the JavaScript source with JSLint."
