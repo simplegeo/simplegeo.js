@@ -1,15 +1,17 @@
 var endpoints = {
-  record: '/records/layer/id.json',
-  records: '/records/layer/ids.json',
-  history: '/records/layer/id/history.json',
-  nearby: '/records/layer/nearby/arg.json',
-  nearbyAddress: '/nearby/address/lat,lon.json',
-  densityDay: '/density/day/lat,lon.json',
-  densityHour: '/density/day/hour/lat,lon.json',
-  contains: '/contains/lat,lon.json',
-  overlaps: '/overlaps/south,west,north,east.json',
-  boundary: '/boundary/id.json',
+  record: '/0.1/records/layer/id.json',
+  records: '/0.1/records/layer/ids.json',
+  history: '/0.1/records/layer/id/history.json',
+  nearby: '/0.1/records/layer/nearby/arg.json',
+  nearbyAddress: '/0.1/nearby/address/lat,lon.json',
+  densityDay: '/0.1/density/day/lat,lon.json',
+  densityHour: '/0.1/density/day/hour/lat,lon.json',
+  contains: '/0.1/contains/lat,lon.json',
+  overlaps: '/0.1/overlaps/south,west,north,east.json',
+  boundary: '/0.1/boundary/id.json',
 }
+
+var Client = simplegeo.Client;
 
 Client.prototype.getRecord = function(layer, id, callback) {
     path = endpoints.record;

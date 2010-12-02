@@ -1,10 +1,12 @@
-var version = '0.1';
-var host = 'api.simplegeo.com';
-var port = '80';
-var apiUrl = 'http://' + host + ':' + port + '/' + version;
-
-var Client = function(token) {
+var Client = function(token, options) {
+    if (!(this instanceof Client)) return new Client(token, options);
+    options = options || {};
     this.token = token;
+    this.options = options;
+    this.host = options.host || 'api.simplegeo.com';
+    this.port = options.port || '80';
+
+    this.apiUrl = 'http://' + this.host + ':' + this.port;
 };
 
 Client.prototype = {
@@ -12,7 +14,7 @@ Client.prototype = {
         data.token = this.token;
         data = $.param(data) + '&callback=?';
         $.ajax({
-            url: apiUrl + path,
+            url: this.apiUrl + path,
             dataType: 'json',
             data: data,
             success: function(response) {
@@ -34,9 +36,9 @@ Client.prototype = {
         var path;
         if (callback === undefined) {
             callback = ipAddress;
-            path = "/locate.json";
+            path = "/0.1/locate.json";
         } else {
-            path = "/locate/" + ipAddress + ".json";
+            path = "/0.1/locate/" + ipAddress + ".json";
         }
         return this.request(path, {}, callback);
    }
