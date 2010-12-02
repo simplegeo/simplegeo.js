@@ -5,7 +5,7 @@
  * Dual licensed under the MIT or GPL Version 2 licenses.
  * http://jquery.org/license
  */
-var jQuery = (function(window, undefined){
+var jQmin = (function(window, undefined){
 
 function now() {
     return (new Date).getTime();
