@@ -31,8 +31,46 @@ Client.prototype = {
             }
         });
     },
-    
-    getLocation: function(ipAddress, callback) {
+
+    watchLocationHTML5: function(options, callback) {
+        var self = this;
+        if (callback === undefined) {
+            callback = options;
+            options = {};
+        }
+        var navigator = window.navigator;
+        if (navigator && navigator.geolocation) {
+            navigator.geolocation.watchPosition(function(location) {
+                location.source = "navigator";
+                callback(null, location);
+            }, function(err) {
+                callback(err);
+            }, options);
+        } else {
+            callback(new Error("navigator.geolocation not available"));
+        }
+    },
+
+    getLocationHTML5: function(options, callback) {
+        var self = this;
+        if (callback === undefined) {
+            callback = options;
+            options = {};
+        }
+        var navigator = window.navigator;
+        if (navigator && navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(location) {
+                location.source = "navigator";
+                callback(null, location);
+            }, function(err) {
+                callback(err);
+            }, options);
+        } else {
+            callback(new Error("navigator.geolocation not available"));
+        }
+    },
+
+    getLocationIP: function(ipAddress, callback) {
         var path;
         if (callback === undefined) {
             callback = ipAddress;
@@ -45,8 +83,11 @@ Client.prototype = {
                 callback(err);
             } else {
                 var o = {
-                    latitude: data.geometry.coordinates[1],
-                    longitude: data.geometry.coordinates[0]
+                    coords: {
+                      latitude: data.geometry.coordinates[1],
+                      longitude: data.geometry.coordinates[0]
+                    },
+                    source: "simplegeo"
                 }
 
                 callback(null, o);
