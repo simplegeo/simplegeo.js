@@ -6,8 +6,7 @@ var ContextClient = function(token, options) {
 ContextClient.prototype = new simplegeo.Client();
 
 ContextClient.prototype.getContext = function(lat, lon, callback) {
-  var path = "/1.0/context/lat,lon.json";
-  path = path.replace('lat', lat).replace('lon', lon);
+  var path = "/1.0/context/" + lat + ", " + lon + ".json";
   return this.request(path, {}, callback);
 }
 
