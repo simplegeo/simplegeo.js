@@ -41,9 +41,9 @@ Client.prototype = {
             options = {};
         }
         if (navigator && navigator.geolocation) {
-            navigator.geolocation.watchPosition(function(location) {
-                location.source = "navigator";
-                callback(null, location);
+            navigator.geolocation.watchPosition(function(position) {
+                position.source = "navigator";
+                callback(null, position);
             }, function(err) {
                 callback(err);
             }, options);
@@ -59,9 +59,9 @@ Client.prototype = {
             options = {};
         }
         if (navigator && navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(location) {
-                location.source = "navigator";
-                callback(null, location);
+            navigator.geolocation.getCurrentPosition(function(position) {
+                position.source = "navigator";
+                callback(null, position);
             }, function(err) {
                 callback(err);
             }, options);
