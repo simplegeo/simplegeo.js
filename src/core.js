@@ -34,6 +34,11 @@ Client.prototype = {
         });
     },
 
+    getFeature: function(handle, callback) {
+        var path = "/1.0/feature/" + handle + ".json";
+        return this.request(path, {}, callback);
+    },
+
     watchLocationHTML5: function(options, callback) {
         var self = this;
         if (callback === undefined) {
