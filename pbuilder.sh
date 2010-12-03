@@ -16,7 +16,7 @@ env
 
 cd $1
 apt-get update
-apt-get install rake rubygems yui-compressor -y -f --force-yes
+apt-get install rake rubygems -y -f --force-yes
 apt-get install -y -f --force-yes
 
 gem install sprockets;

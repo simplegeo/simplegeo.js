@@ -8,7 +8,7 @@ var endpoints = {
   densityHour: '/0.1/density/day/hour/lat,lon.json',
   contains: '/0.1/contains/lat,lon.json',
   overlaps: '/0.1/overlaps/south,west,north,east.json',
-  boundary: '/0.1/boundary/id.json',
+  boundary: '/0.1/boundary/id.json'
 }
 
 var Client = simplegeo.Client;

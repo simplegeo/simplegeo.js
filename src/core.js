@@ -9,6 +9,8 @@ var Client = function(token, options) {
     this.apiUrl = 'http://' + this.host + ':' + this.port;
 };
 
+var navigator = window.navigator;
+
 Client.prototype = {
     request: function(path, data, callback) {
         data.token = this.token;
@@ -38,7 +40,6 @@ Client.prototype = {
             callback = options;
             options = {};
         }
-        var navigator = window.navigator;
         if (navigator && navigator.geolocation) {
             navigator.geolocation.watchPosition(function(location) {
                 location.source = "navigator";
@@ -57,7 +58,6 @@ Client.prototype = {
             callback = options;
             options = {};
         }
-        var navigator = window.navigator;
         if (navigator && navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(location) {
                 location.source = "navigator";

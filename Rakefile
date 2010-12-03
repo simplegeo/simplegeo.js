@@ -28,7 +28,9 @@ def combine(src, dest)
 end
 
 def compress(src, dest)
-   sh 'yui-compressor', '-v', src, '-o', dest
+    # java -jar vendor/compiler.jar --js build/simplegeo.jq.js --js_output_file build/simplegeo.jq.cmin.js --compilation_level SIMPLE_OPTIMIZATIONS
+    sh 'java', '-jar', 'vendor/compiler.jar', '--js', src, '--js_output_file', dest
+    # sh 'yui-compressor', '-v', src, '-o', dest
 end
 
 def bundle_template(template, name, includes)
