@@ -40,7 +40,18 @@ Client.prototype = {
         } else {
             path = "/0.1/locate/" + ipAddress + ".json";
         }
-        return this.request(path, {}, callback);
+        return this.request(path, {}, function(err, data) {
+            if (err) {
+                callback(err);
+            } else {
+                var o = {
+                    latitude: data.geometry.coordinates[1],
+                    longitude: data.geometry.coordinates[0]
+                }
+
+                callback(null, o);
+            }
+        });
    }
 };
 
