@@ -57,6 +57,15 @@ task :minify => [:build, :templates] do
     bundle "simplegeo.places", ["places"]
 end
 
+desc "Build doc."
+task :doc do
+    sh 'env', 'JSDOCDIR=vendor/jsdoc-toolkit', './vendor/jsdoc-toolkit/jsrun.sh',
+      'src/core.js',
+      'src/context.js',
+      'src/places.js',
+      '-t=vendor/jsdoc-toolkit/templates/jsdoc', '-d=doc'
+end
+
 #desc "Check the JavaScript source with JSLint."
 #task :check => [:merge] do
 #  jslint_path = File.join(ROOT, "vendor", "jslint.js")

@@ -1,3 +1,11 @@
+/**
+ * This is a client
+ * @param token a SimpleGeo JSONP token
+ * @param [options] an Object containing connection options
+ * @param [options.host="api.simplegeo.com"] the SimpleGeo API host
+ * @param [options.port="80"] the port of the SimpleGeo API host
+ * @constructor
+ */
 var Client = function(token, options) {
     if (!(this instanceof Client)) return new Client(token, options);
     options = options || {};
@@ -34,11 +42,23 @@ Client.prototype = {
         });
     },
 
+    /**
+     * Returns a given feature.
+     * @param handle A SimpleGeo handle for an object (looks like "SG_...")
+     * @param callback
+     */
     getFeature: function(handle, callback) {
         var path = "/1.0/feature/" + handle + ".json";
         return this.request(path, {}, callback);
     },
 
+    /**
+     * Use the navigator.geolocation API to get updates about the location.
+     * If the user denys the applications request for location information,
+     * and error will be fired to the callback.
+     * @param [options]
+     * @param callback
+     */
     watchLocationHTML5: function(options, callback) {
         var self = this;
         if (callback === undefined) {
@@ -57,6 +77,13 @@ Client.prototype = {
         }
     },
 
+    /**
+     * Use the navigator.geolocation API to get the location.
+     * If the user denys the applications request for location information,
+     * and error will be fired to the callback.
+     * @param [options]
+     * @param callback
+     */
     getLocationHTML5: function(options, callback) {
         var self = this;
         if (callback === undefined) {
@@ -75,6 +102,12 @@ Client.prototype = {
         }
     },
 
+    /**
+     * Use the SimpleGeo API to get an estimate of the user's location
+     * by using the IP address of the request.
+     * @param [ipAddress] an IP address to use instead of the request's IP address
+     * @param callback
+     */
     getLocationIP: function(ipAddress, callback) {
         var path;
         if (callback === undefined) {

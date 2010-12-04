@@ -22,5 +22,6 @@ apt-get install -y -f --force-yes
 gem install sprockets;
 
 rake minify
+rake doc
 
 cleanexit
