@@ -59,7 +59,10 @@ end
 
 desc "Build doc."
 task :doc do
-    sh 'env', 'JSDOCDIR=vendor/jsdoc-toolkit', './vendor/jsdoc-toolkit/jsrun.sh',
+    sh 'java',
+      '-Djsdoc.dir=vendor/jsdoc-toolkit',
+      '-jar', 'vendor/jsdoc-toolkit/jsrun.jar',
+      'vendor/jsdoc-toolkit/app/run.js',
       'src/core.js',
       'src/context.js',
       'src/places.js',
