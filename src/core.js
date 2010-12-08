@@ -48,7 +48,7 @@ Client.prototype = {
      * @param callback
      */
     getFeature: function(handle, callback) {
-        var path = "/1.0/feature/" + handle + ".json";
+        var path = "/1.0/features/" + handle + ".json";
         return this.request(path, {}, callback);
     },
 
