@@ -17,7 +17,7 @@ ContextClient.prototype = new simplegeo.Client();
  * @param callback
  */
 ContextClient.prototype.getContext = function(lat, lon, callback) {
-  var path = "/1.0/context/" + lat + ", " + lon + ".json";
+  var path = "/1.0/context/" + lat + "," + lon + ".json";
   return this.request(path, {}, callback);
 }
 
