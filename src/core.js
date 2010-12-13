@@ -59,7 +59,7 @@ Client.prototype = {
      * @param [options]
      * @param callback
      */
-    watchLocationHTML5: function(options, callback) {
+    watchLocationFromBrowser: function(options, callback) {
         var self = this;
         if (callback === undefined) {
             callback = options;
@@ -84,7 +84,7 @@ Client.prototype = {
      * @param [options]
      * @param callback
      */
-    getLocationHTML5: function(options, callback) {
+    getLocationFromBrowser: function(options, callback) {
         var self = this;
         if (callback === undefined) {
             callback = options;
@@ -108,7 +108,7 @@ Client.prototype = {
      * @param [ipAddress] an IP address to use instead of the request's IP address
      * @param callback
      */
-    getLocationIP: function(ipAddress, callback) {
+    getLocationFromIP: function(ipAddress, callback) {
         var path;
         if (callback === undefined) {
             callback = ipAddress;
@@ -131,7 +131,17 @@ Client.prototype = {
                 callback(null, o);
             }
         });
-   }
+    },
+
+    getLocation: function(options, callback) {
+      getLocationFromBrowser(options, function(err, position) {
+        if (err) {
+          getLocationFromIP(callback);
+        } else {
+          callback(null, position);
+        }
+      });
+    }
 };
 
 simplegeo.Client = Client;
