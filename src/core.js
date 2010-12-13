@@ -133,7 +133,18 @@ Client.prototype = {
         });
     },
 
+    /**
+     * First try get the location from the browser (this will usually ask
+     * the user to approve). If that fails or the user denies the request,
+     * fall back to doing an IP based lookup for the location
+     * @param [options]
+     * @param callback
+     */
     getLocation: function(options, callback) {
+      if (callback === undefined) {
+          callback = options;
+          options = {};
+      }
       getLocationFromBrowser(options, function(err, position) {
         if (err) {
           getLocationFromIP(callback);
