@@ -141,13 +141,14 @@ Client.prototype = {
      * @param callback
      */
     getLocation: function(options, callback) {
+      var self = this;
       if (callback === undefined) {
           callback = options;
           options = {};
       }
-      getLocationFromBrowser(options, function(err, position) {
+      self.getLocationFromBrowser(options, function(err, position) {
         if (err) {
-          getLocationFromIP(callback);
+          self.getLocationFromIP(callback);
         } else {
           callback(null, position);
         }
