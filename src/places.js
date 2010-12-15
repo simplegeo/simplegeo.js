@@ -1,21 +1,21 @@
 /**
  * SimpleGeo Places Client
- * @extends Client
+ * @extends simplegeo.Client
  * @constructor
  */
-var PlacesClient = function(token, options) {
-  if (!(this instanceof PlacesClient)) return new PlacesClient(token, options);
+simplegeo.PlacesClient = function(token, options) {
+  if (!(this instanceof simplegeo.PlacesClient)) return new simplegeo.PlacesClient(token, options);
   simplegeo.Client.call(this, token, options);
 }
 
-PlacesClient.prototype = new simplegeo.Client();
+simplegeo.PlacesClient.prototype = new simplegeo.Client();
 
 /**
  * Look up a place
  * @param handle
  * @param callback
  */
-PlacesClient.prototype.getRecord = function(handle, callback) {
+simplegeo.PlacesClient.prototype.getRecord = function(handle, callback) {
   var path = "/1.0/places/" + handle + ".json";
   return this.request(path, {}, callback);
 };
@@ -29,10 +29,8 @@ PlacesClient.prototype.getRecord = function(handle, callback) {
  * @param [options.category]
  * @param callback
  */
-PlacesClient.prototype.search = function(lat, lon, options, callback) {
+simplegeo.PlacesClient.prototype.search = function(lat, lon, options, callback) {
   var path = "/1.0/places/lat,lon.json";
   path = path.replace('lat', lat).replace('lon', lon);
   return this.request(path, options, callback);
 }
-
-simplegeo.PlacesClient = PlacesClient;

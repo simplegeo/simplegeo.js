@@ -11,22 +11,20 @@ var endpoints = {
   boundary: '/0.1/boundary/id.json'
 }
 
-var Client = simplegeo.Client;
-
-Client.prototype.getRecord = function(layer, id, callback) {
+simplegeo.Client.prototype.getRecord = function(layer, id, callback) {
     path = endpoints.record;
     path = path.replace('layer', layer).replace('id', id);
     return this.request(path, {}, callback);
 };
 
-Client.prototype.getRecords = function(layer, ids, callback) {
+simplegeo.Client.prototype.getRecords = function(layer, ids, callback) {
     path = endpoints.records;
     idString = ids.join(',');
     path = path.replace('layer', layer).replace('ids', idString);
     return this.request(path, {}, callback);
 };
 
-Client.prototype.getHistory = function(layer, id, data, callback) {
+simplegeo.Client.prototype.getHistory = function(layer, id, data, callback) {
     if (callback === undefined) {
         callback = data;
         data = {};
@@ -36,7 +34,7 @@ Client.prototype.getHistory = function(layer, id, data, callback) {
     return this.request(path, data, callback);
 };
 
-Client.prototype.getNearby = function(layer, lat, lon, data, callback) {
+simplegeo.Client.prototype.getNearby = function(layer, lat, lon, data, callback) {
     if (callback === undefined) {
         callback = data;
         data = {};
@@ -46,7 +44,7 @@ Client.prototype.getNearby = function(layer, lat, lon, data, callback) {
     return this.request(path, data, callback);
 };
 
-Client.prototype.getNearbyGeohash = function(layer, geohash, data, callback) {
+simplegeo.Client.prototype.getNearbyGeohash = function(layer, geohash, data, callback) {
     if (callback === undefined) {
         callback = data;
         data = {};
@@ -56,13 +54,13 @@ Client.prototype.getNearbyGeohash = function(layer, geohash, data, callback) {
     return this.request(path, data, callback);
 };
 
-Client.prototype.getNearbyAddress = function(lat, lon, callback) {
+simplegeo.Client.prototype.getNearbyAddress = function(lat, lon, callback) {
     path = endpoints.nearbyAddress;
     path = path.replace('lat', lat).replace('lon', lon);
     return this.request(path, {}, callback);
 };
 
-Client.prototype.getDensity = function(lat, lon, day, hour, callback) {
+simplegeo.Client.prototype.getDensity = function(lat, lon, day, hour, callback) {
     if (callback === undefined) {
         callback = hour;
         hour = undefined;
@@ -75,13 +73,13 @@ Client.prototype.getDensity = function(lat, lon, day, hour, callback) {
     return this.request(path, {}, callback);
 };
 
-Client.prototype.getContains = function(lat, lon, callback) {
+simplegeo.Client.prototype.getContains = function(lat, lon, callback) {
     path = endpoints.contains;
     path = path.replace('lat', lat).replace('lon', lon);
     return this.request(path, {}, callback);
 };
 
-Client.prototype.getOverlaps = function(south, west, north, east, data, callback) {
+simplegeo.Client.prototype.getOverlaps = function(south, west, north, east, data, callback) {
     if (callback === undefined) {
         callback = data;
         data = {};
@@ -91,7 +89,7 @@ Client.prototype.getOverlaps = function(south, west, north, east, data, callback
     return this.request(path, data, callback);
 };
 
-Client.prototype.getBoundary = function(id, callback) {
+simplegeo.Client.prototype.getBoundary = function(id, callback) {
     path = endpoints.boundary;
     path = path.replace('id', id);
     return this.request(path, {}, callback);

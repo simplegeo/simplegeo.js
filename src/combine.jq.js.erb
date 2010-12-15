@@ -1,12 +1,10 @@
 (function(window, undefined){
-if (window.simplegeo === undefined) {
-  window.simplegeo = {};
-}
-
-(function(simplegeo,$){
-//= require <core>
-<% includes.each do |include| %>
-//= require <<%= include %>>
-<% end %>
-})(window.simplegeo, jQuery);
+  (function($){
+    //= require <core>
+    //= require <client>
+    <% includes.each do |include| %>
+      //= require <<%= include %>>
+    <% end %>
+    window.simplegeo = simplegeo;
+  })(jQuery);
 })(window);

@@ -64,6 +64,7 @@ task :doc do
       '-jar', 'vendor/jsdoc-toolkit/jsrun.jar',
       'vendor/jsdoc-toolkit/app/run.js',
       'src/core.js',
+      'src/client.js',
       'src/context.js',
       'src/places.js',
       '-t=vendor/jsdoc-toolkit/templates/jsdoc', '-d=doc'
