@@ -53,6 +53,15 @@ Client.prototype = {
     },
 
     /**
+     * Returns a list containing the different available categories
+     * @param callback
+     */
+    getFeatureCategories: function(callback) {
+        var path = "/1.0/features/categories.json";
+        return this.request(path, {}, callback);
+    },
+
+    /**
      * Use the navigator.geolocation API to get updates about the location.
      * If the user denys the applications request for location information,
      * and error will be fired to the callback.
