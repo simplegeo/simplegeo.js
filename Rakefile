@@ -51,10 +51,11 @@ directory "templates"
 
 desc "Minifies the JavaScript source."
 task :minify => [:build, :templates] do
-    bundle "simplegeo", []
+    bundle "simplegeo.core", []
     bundle "simplegeo.storage", ["storage"]
     bundle "simplegeo.context", ["context"]
     bundle "simplegeo.places", ["places"]
+    bundle "simplegeo.all", ["storage", "context", "places"]
 end
 
 desc "Build doc."
