@@ -6,9 +6,6 @@ var endpoints = {
   nearbyAddress: '/0.1/nearby/address/lat,lon.json',
   densityDay: '/0.1/density/day/lat,lon.json',
   densityHour: '/0.1/density/day/hour/lat,lon.json',
-  contains: '/0.1/contains/lat,lon.json',
-  overlaps: '/0.1/overlaps/south,west,north,east.json',
-  boundary: '/0.1/boundary/id.json'
 }
 
 simplegeo.Client.prototype.getRecord = function(layer, id, callback) {
@@ -70,27 +67,5 @@ simplegeo.Client.prototype.getDensity = function(lat, lon, day, hour, callback) 
         path = endpoints.densityHour;
         path = path.replace('day', day).replace('hour', hour).replace('lat', lat).replace('lon', lon);
     }
-    return this.request(path, {}, callback);
-};
-
-simplegeo.Client.prototype.getContains = function(lat, lon, callback) {
-    path = endpoints.contains;
-    path = path.replace('lat', lat).replace('lon', lon);
-    return this.request(path, {}, callback);
-};
-
-simplegeo.Client.prototype.getOverlaps = function(south, west, north, east, data, callback) {
-    if (callback === undefined) {
-        callback = data;
-        data = {};
-    }
-    path = endpoints.overlaps;
-    path = path.replace('south', south).replace('west', west).replace('north', north).replace('east', east);
-    return this.request(path, data, callback);
-};
-
-simplegeo.Client.prototype.getBoundary = function(id, callback) {
-    path = endpoints.boundary;
-    path = path.replace('id', id);
     return this.request(path, {}, callback);
 };
