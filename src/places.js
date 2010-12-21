@@ -24,13 +24,64 @@ simplegeo.PlacesClient.prototype.getRecord = function(handle, callback) {
  * Search for places
  * @param lat
  * @param lon
- * @param options
+ * @param [options]
  * @param [options.q]
  * @param [options.category]
  * @param callback
  */
 simplegeo.PlacesClient.prototype.search = function(lat, lon, options, callback) {
+  if (callback === undefined) {
+    callback = options;
+    options = {};
+  }
   var path = "/1.0/places/lat,lon.json";
   path = path.replace('lat', lat).replace('lon', lon);
   return this.request(path, options, callback);
 }
+
+/**
+ * Search for places
+ * @param [ip] Use this ip as the lookup.
+ *        Defaults to the IP address of the request
+ * @param options
+ * @param [options.q]
+ * @param [options.category]
+ * @param callback
+ */
+simplegeo.PlacesClient.prototype.searchFromIP = function(ip, options, callback) {
+  if (arguments.length === 2) {
+    // Check if the ip or the options were omitted 
+    callback = options;
+    if (ip.trim) {
+      options = {};
+    } else {
+      options = ip;
+      ip = 'ip';
+    }
+  } else if (arguments.length === 1) {
+    callback = ip;
+    ip = 'ip';
+    options = {};
+  }
+  var path = "/1.0/places/" + ip + ".json";
+  return this.request(path, options, callback);
+}
+
+/**
+ * Search for places
+ * @param address
+ * @param options
+ * @param [options.q]
+ * @param [options.category]
+ * @param callback
+ */
+simplegeo.PlacesClient.prototype.searchFromAddress = function(address, options, callback) {
+  if (callback === undefined) {
+    callback = options;
+    options = {};
+  }
+  var path = "/1.0/places/address.json";
+  options.address = address;
+  return this.request(path, options, callback);
+}
+
