@@ -1,3 +1,15 @@
+/**
+ * SimpleGeo Storage Client
+ * @extends simplegeo.Client
+ * @constructor
+ */
+simplegeo.StorageClient = function(token, options) {
+  if (!(this instanceof simplegeo.StorageClient)) return new simplegeo.StorageClient(token, options);
+  simplegeo.Client.call(this, token, options);
+}
+
+simplegeo.StorageClient.prototype = new simplegeo.Client();
+
 var endpoints = {
   record: '/0.1/records/layer/id.json',
   records: '/0.1/records/layer/ids.json',
@@ -8,20 +20,20 @@ var endpoints = {
   densityHour: '/0.1/density/day/hour/lat,lon.json',
 }
 
-simplegeo.Client.prototype.getRecord = function(layer, id, callback) {
+simplegeo.StorageClient.prototype.getRecord = function(layer, id, callback) {
     path = endpoints.record;
     path = path.replace('layer', layer).replace('id', id);
     return this.request(path, {}, callback);
 };
 
-simplegeo.Client.prototype.getRecords = function(layer, ids, callback) {
+simplegeo.StorageClient.prototype.getRecords = function(layer, ids, callback) {
     path = endpoints.records;
     idString = ids.join(',');
     path = path.replace('layer', layer).replace('ids', idString);
     return this.request(path, {}, callback);
 };
 
-simplegeo.Client.prototype.getHistory = function(layer, id, data, callback) {
+simplegeo.StorageClient.prototype.getHistory = function(layer, id, data, callback) {
     if (callback === undefined) {
         callback = data;
         data = {};
@@ -31,7 +43,7 @@ simplegeo.Client.prototype.getHistory = function(layer, id, data, callback) {
     return this.request(path, data, callback);
 };
 
-simplegeo.Client.prototype.getNearby = function(layer, lat, lon, data, callback) {
+simplegeo.StorageClient.prototype.getNearby = function(layer, lat, lon, data, callback) {
     if (callback === undefined) {
         callback = data;
         data = {};
@@ -41,7 +53,7 @@ simplegeo.Client.prototype.getNearby = function(layer, lat, lon, data, callback)
     return this.request(path, data, callback);
 };
 
-simplegeo.Client.prototype.getNearbyGeohash = function(layer, geohash, data, callback) {
+simplegeo.StorageClient.prototype.getNearbyGeohash = function(layer, geohash, data, callback) {
     if (callback === undefined) {
         callback = data;
         data = {};
@@ -51,13 +63,13 @@ simplegeo.Client.prototype.getNearbyGeohash = function(layer, geohash, data, cal
     return this.request(path, data, callback);
 };
 
-simplegeo.Client.prototype.getNearbyAddress = function(lat, lon, callback) {
+simplegeo.StorageClient.prototype.getNearbyAddress = function(lat, lon, callback) {
     path = endpoints.nearbyAddress;
     path = path.replace('lat', lat).replace('lon', lon);
     return this.request(path, {}, callback);
 };
 
-simplegeo.Client.prototype.getDensity = function(lat, lon, day, hour, callback) {
+simplegeo.StorageClient.prototype.getDensity = function(lat, lon, day, hour, callback) {
     if (callback === undefined) {
         callback = hour;
         hour = undefined;
