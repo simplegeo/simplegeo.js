@@ -12,9 +12,20 @@ simplegeo.ContextClient.prototype = new simplegeo.Client();
 
 /**
  * Retrieve context information for the location
- * @param lat
- * @param lon
- * @param callback
+ * @param {Number} lat
+ * @param {Number} lon
+ * @param {Function} callback called with (err, data)
+ *        err is 'null' unless there is an error. Example response data:
+ * <pre>{
+ *   "query": {
+ *     "latitude":40.01695,
+ *     "longitude":-105.27742
+ *   },
+ *   "timestamp":1292958383.954,
+ *   "features":[...],
+ *   "demographics":{"metro_score":9}
+ * }</pre>
+ *
  */
 simplegeo.ContextClient.prototype.getContext = function(lat, lon, callback) {
   var path = "/1.0/context/" + lat + "," + lon + ".json";
@@ -22,10 +33,22 @@ simplegeo.ContextClient.prototype.getContext = function(lat, lon, callback) {
 }
 
 /**
- * Retrieve context information for the location
- * @param [ip] Use this ip as the lookup.
- *        Defaults to the IP address of the request
- * @param callback
+ * Retrieve context information for the location of an IP address.
+ * @param {String} [ip] Use this ip as the lookup.
+ *        Defaults to the IP address of the request if not specified.
+ * @param {Function} callback called with (Err, data)
+ *        err is 'null' unless there is an error. Example response data:
+ * <pre>{
+ *   "query":{
+ *     "latitude":37.4192,
+ *     "longitude":-122.0574,
+ *     "ip":"74.125.224.16"
+ *   },
+ *   "timestamp":1292958831.291,
+ *   "features":[...],
+ *   "demographics":{"metro_score":10}
+ * }</pre>
+ *
  */
 simplegeo.ContextClient.prototype.getContextFromIP = function(ip, callback) {
   if (callback === undefined) {
@@ -37,9 +60,20 @@ simplegeo.ContextClient.prototype.getContextFromIP = function(ip, callback) {
 }
 
 /**
- * Retrieve context information for the address
- * @param address
- * @param callback
+ * Retrieve context information for an address
+ * @param {String} address a mailing address to use as the point for the query.
+ * @param {Function} callback called with (err, data)
+ *        err is 'null' unless there is an error. Example response data:
+ * <pre>{
+ *   "query":{
+ *     "latitude":37.772555,
+ *     "longitude":-122.405978,
+ *     "address":"41 Decatur Street, San Francisco, CA"
+ *   },
+ *   "timestamp":1292959054.122,
+ *   "features":[...],
+ *   "demographics":{"metro_score":10}
+ * }</pre>
  */
 simplegeo.ContextClient.prototype.getContextFromAddress = function(address, callback) {
   var path = "/1.0/context/address.json";
