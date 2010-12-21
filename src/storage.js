@@ -17,7 +17,7 @@ var endpoints = {
   nearby: '/0.1/records/layer/nearby/arg.json',
   nearbyAddress: '/0.1/nearby/address/lat,lon.json',
   densityDay: '/0.1/density/day/lat,lon.json',
-  densityHour: '/0.1/density/day/hour/lat,lon.json',
+  densityHour: '/0.1/density/day/hour/lat,lon.json'
 }
 
 simplegeo.StorageClient.prototype.getRecord = function(layer, id, callback) {
