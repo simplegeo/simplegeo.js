@@ -65,6 +65,7 @@ if (simplegeo.Client === undefined) {
        * and error will be fired to the callback.
        * @param [options]
        * @param callback See {@link callbacks}.
+       * The data passed to the callback matches the <a href='http://dev.w3.org/geo/api/spec-source.html#position_interface'>W3C Geolocation Position Interface</a>.
        */
       watchLocationFromBrowser: function(options, callback) {
           var self = this;
@@ -90,6 +91,7 @@ if (simplegeo.Client === undefined) {
        * and error will be fired to the callback.
        * @param [options]
        * @param callback See {@link callbacks}.
+       * The data passed to the callback matches the <a href='http://dev.w3.org/geo/api/spec-source.html#position_interface'>W3C Geolocation Position Interface</a>.
        */
       getLocationFromBrowser: function(options, callback) {
           var self = this;
@@ -114,6 +116,7 @@ if (simplegeo.Client === undefined) {
        * by using the IP address of the request.
        * @param [ipAddress] an IP address to use instead of the request's IP address
        * @param callback See {@link callbacks}.
+       * The data passed to the callback matches the <a href='http://dev.w3.org/geo/api/spec-source.html#position_interface'>W3C Geolocation Position Interface</a>.
        */
       getLocationFromIP: function(ipAddress, callback) {
           var path;
@@ -148,6 +151,7 @@ if (simplegeo.Client === undefined) {
        * fall back to doing an IP based lookup for the location
        * @param [options]
        * @param callback See {@link callbacks}.
+       * The data passed to the callback matches the <a href='http://dev.w3.org/geo/api/spec-source.html#position_interface'>W3C Geolocation Position Interface</a>.
        */
       getLocation: function(options, callback) {
         var self = this;
