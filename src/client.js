@@ -69,7 +69,7 @@ if (simplegeo.Client === undefined) {
        * Use the navigator.geolocation API to get updates about the location.
        * If the user denys the applications request for location information,
        * and error will be fired to the callback.
-       * @param [options]
+       * @param [options] <a href='http://dev.w3.org/geo/api/spec-source.html#position_options_interface'>W3C Geolocation PositionOptions</a>
        * @param callback See {@link callbacks}.
        * The data passed to the callback matches the <a href='http://dev.w3.org/geo/api/spec-source.html#position_interface'>W3C Geolocation Position Interface</a>.
        */
@@ -95,7 +95,7 @@ if (simplegeo.Client === undefined) {
        * Use the navigator.geolocation API to get the location.
        * If the user denys the applications request for location information,
        * and error will be fired to the callback.
-       * @param [options]
+       * @param [options] <a href='http://dev.w3.org/geo/api/spec-source.html#position_options_interface'>W3C Geolocation PositionOptions</a>
        * @param callback See {@link callbacks}.
        * The data passed to the callback matches the <a href='http://dev.w3.org/geo/api/spec-source.html#position_interface'>W3C Geolocation Position Interface</a>.
        */
@@ -155,7 +155,7 @@ if (simplegeo.Client === undefined) {
        * First try get the location from the browser (this will usually ask
        * the user to approve). If that fails or the user denies the request,
        * fall back to doing an IP based lookup for the location
-       * @param [options]
+       * @param [options] <a href='http://dev.w3.org/geo/api/spec-source.html#position_options_interface'>W3C Geolocation PositionOptions</a>
        * @param callback See {@link callbacks}.
        * The data passed to the callback matches the <a href='http://dev.w3.org/geo/api/spec-source.html#position_interface'>W3C Geolocation Position Interface</a>.
        */
