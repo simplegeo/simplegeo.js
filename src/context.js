@@ -1,5 +1,6 @@
 /**
- * SimpleGeo Context Client
+ * Create a SimpleGeo Context Client
+ * @see simplegeo.Client
  * @extends simplegeo.Client
  * @constructor
  */

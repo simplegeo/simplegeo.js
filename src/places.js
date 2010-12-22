@@ -1,5 +1,6 @@
 /**
- * SimpleGeo Places Client
+ * Create a SimpleGeo Places Client
+ * @see simplegeo.Client
  * @extends simplegeo.Client
  * @constructor
  */
