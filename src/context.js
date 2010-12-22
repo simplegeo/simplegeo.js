@@ -17,15 +17,15 @@ simplegeo.ContextClient.prototype = new simplegeo.Client();
  * @param {Number} lon
  * @param {Function} callback See {@link callbacks}.
  * Example response data:
- * <pre>{
- *   "query": {
- *     "latitude":40.01695,
- *     "longitude":-105.27742
+ * <blockquote><pre>{
+ *   query: {
+ *     latitude: 40.01695,
+ *     longitude: -105.27742
  *   },
- *   "timestamp":1292958383.954,
- *   "features":[...],
- *   "demographics":{"metro_score":9}
- * }</pre>
+ *   timestamp: 1292958383.954,
+ *   features: [...],
+ *   demographics: {metro_score: 9}
+ * }</pre></blockquote>
  *
  */
 simplegeo.ContextClient.prototype.getContext = function(lat, lon, callback) {
@@ -39,16 +39,16 @@ simplegeo.ContextClient.prototype.getContext = function(lat, lon, callback) {
  *        Defaults to the IP address of the request if not specified.
  * @param {Function} callback See {@link callbacks}.
  * Example response data:
- * <pre>{
- *   "query":{
- *     "latitude":37.4192,
- *     "longitude":-122.0574,
- *     "ip":"74.125.224.16"
+ * <blockquote><pre>{
+ *   query: {
+ *     latitude: 37.4192,
+ *     longitude: -122.0574,
+ *     ip: "74.125.224.16"
  *   },
- *   "timestamp":1292958831.291,
- *   "features":[...],
- *   "demographics":{"metro_score":10}
- * }</pre>
+ *   timestamp: 1292958831.291,
+ *   features: [...],
+ *   demographics: {metro_score: 10}
+ * }</pre></blockquote>
  */
 simplegeo.ContextClient.prototype.getContextFromIP = function(ip, callback) {
   if (callback === undefined) {
@@ -64,16 +64,16 @@ simplegeo.ContextClient.prototype.getContextFromIP = function(ip, callback) {
  * @param {String} address a mailing address to use as the point for the query.
  * @param {Function} callback See {@link callbacks}.
  * Example response data:
- * <pre>{
- *   "query":{
- *     "latitude":37.772555,
- *     "longitude":-122.405978,
- *     "address":"41 Decatur Street, San Francisco, CA"
+ * <blockquote><pre>{
+ *   query: {
+ *     latitude: 37.772555,
+ *     longitude: -122.405978,
+ *     address: "41 Decatur Street, San Francisco, CA"
  *   },
- *   "timestamp":1292959054.122,
- *   "features":[...],
- *   "demographics":{"metro_score":10}
- * }</pre>
+ *   timestamp: 1292959054.122,
+ *   features: [...],
+ *   demographics: {metro_score: 10}
+ * }</pre></blockquote>
  */
 simplegeo.ContextClient.prototype.getContextFromAddress = function(address, callback) {
   var path = "/1.0/context/address.json";

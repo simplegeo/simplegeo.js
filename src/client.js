@@ -48,7 +48,13 @@ if (simplegeo.Client === undefined) {
        * Returns a given feature.
        * @param handle A SimpleGeo handle for an object (looks like "SG_...")
        * @param [options]
-       * @param callback See {@link callbacks}.
+       * @param callback See {@link callbacks}. Example response data:
+       * <blockquote><pre>{
+       *   geometry: {...},
+       *   type: "Feature",
+       *   properties: {...},
+       *   id: "SG_5vDxvpHBYacPoMwaYaGgVP"
+       * }</pre></blockquote>
        */
       getFeature: function(handle, options, callback) {
           if (callback === undefined) {

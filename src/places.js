@@ -16,8 +16,13 @@ simplegeo.PlacesClient.prototype = new simplegeo.Client();
  * @param lat
  * @param lon
  * @param [options] See the <a href='http://simplegeo.com/docs/api-endpoints/simplegeo-places#search'>SimpleGeo Places documentation</a>
- *                  for the available options.
- * @param callback See {@link callbacks}.
+ *                  for the available options. Example: <code>{q: "Starbucks", radius: 10}</code>
+ * @param callback See {@link callbacks}. Example response data:
+ * <blockquote><pre>{
+ *   total: 25,
+ *   type: "FeatureCollection",
+ *   features: [...]
+ * }</pre></blockquote>
  */
 simplegeo.PlacesClient.prototype.search = function(lat, lon, options, callback) {
   if (callback === undefined) {
@@ -30,11 +35,12 @@ simplegeo.PlacesClient.prototype.search = function(lat, lon, options, callback) 
 }
 
 /**
- * Search for places
- * @param [ip] Use this ip as the lookup. Defaults to the IP address of the request
- * @param [options] See the <a href='http://simplegeo.com/docs/api-endpoints/simplegeo-places#search'>SimpleGeo Places documentation</a>
- *                  for the available options.
- * @param callback See {@link callbacks}.
+ * Search for places near the location of an IP address
+ * @param [ip] Use this IP as the lookup.
+ *        Defaults to the IP address of the request if not specified
+ * @param [options]
+ * @param callback See {@link simplegeo.PlacesClient#search} for examples of
+ *                 <code>options</code> and <code>callback</code>.
  */
 simplegeo.PlacesClient.prototype.searchFromIP = function(ip, options, callback) {
   if (arguments.length === 2) {
@@ -56,11 +62,11 @@ simplegeo.PlacesClient.prototype.searchFromIP = function(ip, options, callback) 
 }
 
 /**
- * Search for places
- * @param address
- * @param [options] See the <a href='http://simplegeo.com/docs/api-endpoints/simplegeo-places#search'>SimpleGeo Places documentation</a>
- *                  for the available options.
- * @param callback See {@link callbacks}.
+ * Search for places near an address
+ * @param address a mailing address to use as the point for the query.
+ * @param [options]
+ * @param callback See {@link simplegeo.PlacesClient#search} for examples of
+ *                 <code>options</code> and <code>callback</code>.
  */
 simplegeo.PlacesClient.prototype.searchFromAddress = function(address, options, callback) {
   if (callback === undefined) {
