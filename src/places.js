@@ -11,23 +11,13 @@ simplegeo.PlacesClient = function(token, options) {
 simplegeo.PlacesClient.prototype = new simplegeo.Client();
 
 /**
- * Look up a place
- * @param handle
- * @param callback
- */
-simplegeo.PlacesClient.prototype.getRecord = function(handle, callback) {
-  var path = "/1.0/places/" + handle + ".json";
-  return this.request(path, {}, callback);
-};
-
-/**
  * Search for places
  * @param lat
  * @param lon
  * @param [options]
  * @param [options.q]
  * @param [options.category]
- * @param callback
+ * @param callback See {@link callbacks}.
  */
 simplegeo.PlacesClient.prototype.search = function(lat, lon, options, callback) {
   if (callback === undefined) {
@@ -46,7 +36,7 @@ simplegeo.PlacesClient.prototype.search = function(lat, lon, options, callback) 
  * @param options
  * @param [options.q]
  * @param [options.category]
- * @param callback
+ * @param callback See {@link callbacks}.
  */
 simplegeo.PlacesClient.prototype.searchFromIP = function(ip, options, callback) {
   if (arguments.length === 2) {
@@ -73,7 +63,7 @@ simplegeo.PlacesClient.prototype.searchFromIP = function(ip, options, callback) 
  * @param options
  * @param [options.q]
  * @param [options.category]
- * @param callback
+ * @param callback See {@link callbacks}.
  */
 simplegeo.PlacesClient.prototype.searchFromAddress = function(address, options, callback) {
   if (callback === undefined) {
