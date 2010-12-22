@@ -47,11 +47,16 @@ if (simplegeo.Client === undefined) {
       /**
        * Returns a given feature.
        * @param handle A SimpleGeo handle for an object (looks like "SG_...")
+       * @param [options]
        * @param callback
        */
-      getFeature: function(handle, callback) {
+      getFeature: function(handle, options, callback) {
+          if (callback === undefined) {
+            callback = options;
+            options = {};
+          }
           var path = "/1.0/features/" + handle + ".json";
-          return this.request(path, {}, callback);
+          return this.request(path, options, callback);
       },
 
       /**
