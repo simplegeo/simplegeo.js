@@ -34,7 +34,7 @@ function publish(symbolSet) {
 	// some ustility filters
 	function hasNoParent($) {return ($.memberOf == "")}
 	function isaFile($) {return ($.is("FILE"))}
-	function isaClass($) {return ($.is("CONSTRUCTOR") || $.isNamespace)}
+	function isaClass($) {return (($.is("CONSTRUCTOR") || $.isNamespace) && ($.alias != "_global_" || !JSDOC.opt.D.noGlobal))}
 	
 	// get an array version of the symbolset, useful for filtering
 	var symbols = symbolSet.toArray();

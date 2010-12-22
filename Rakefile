@@ -64,6 +64,7 @@ task :doc do
       '-Djsdoc.dir=vendor/jsdoc-toolkit',
       '-jar', 'vendor/jsdoc-toolkit/jsrun.jar',
       'vendor/jsdoc-toolkit/app/run.js',
+      '-D=noGlobal:true',
       'src/core.js',
       'src/client.js',
       'src/context.js',
