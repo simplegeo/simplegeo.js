@@ -11,11 +11,11 @@ simplegeo.ContextClient = function(token, options) {
 simplegeo.ContextClient.prototype = new simplegeo.Client();
 
 /**
- * Retrieve context information for the location
+ * Retrieve context information for the location.
  * @param {Number} lat
  * @param {Number} lon
- * @param {Function} callback called with (err, data)
- *        err is 'null' unless there is an error. Example response data:
+ * @param {Function} callback See {@link callbacks}.
+ * Example response data:
  * <pre>{
  *   "query": {
  *     "latitude":40.01695,
@@ -36,8 +36,8 @@ simplegeo.ContextClient.prototype.getContext = function(lat, lon, callback) {
  * Retrieve context information for the location of an IP address.
  * @param {String} [ip] Use this ip as the lookup.
  *        Defaults to the IP address of the request if not specified.
- * @param {Function} callback called with (Err, data)
- *        err is 'null' unless there is an error. Example response data:
+ * @param {Function} callback See {@link callbacks}.
+ * Example response data:
  * <pre>{
  *   "query":{
  *     "latitude":37.4192,
@@ -48,7 +48,6 @@ simplegeo.ContextClient.prototype.getContext = function(lat, lon, callback) {
  *   "features":[...],
  *   "demographics":{"metro_score":10}
  * }</pre>
- *
  */
 simplegeo.ContextClient.prototype.getContextFromIP = function(ip, callback) {
   if (callback === undefined) {
@@ -62,8 +61,8 @@ simplegeo.ContextClient.prototype.getContextFromIP = function(ip, callback) {
 /**
  * Retrieve context information for an address
  * @param {String} address a mailing address to use as the point for the query.
- * @param {Function} callback called with (err, data)
- *        err is 'null' unless there is an error. Example response data:
+ * @param {Function} callback See {@link callbacks}.
+ * Example response data:
  * <pre>{
  *   "query":{
  *     "latitude":37.772555,
