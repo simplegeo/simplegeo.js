@@ -48,7 +48,7 @@ if (simplegeo.Client === undefined) {
        * Returns a given feature.
        * @param handle A SimpleGeo handle for an object (looks like "SG_...")
        * @param [options]
-       * @param callback
+       * @param callback See {@link callbacks}.
        */
       getFeature: function(handle, options, callback) {
           if (callback === undefined) {
@@ -64,7 +64,7 @@ if (simplegeo.Client === undefined) {
        * If the user denys the applications request for location information,
        * and error will be fired to the callback.
        * @param [options]
-       * @param callback
+       * @param callback See {@link callbacks}.
        */
       watchLocationFromBrowser: function(options, callback) {
           var self = this;
@@ -89,7 +89,7 @@ if (simplegeo.Client === undefined) {
        * If the user denys the applications request for location information,
        * and error will be fired to the callback.
        * @param [options]
-       * @param callback
+       * @param callback See {@link callbacks}.
        */
       getLocationFromBrowser: function(options, callback) {
           var self = this;
@@ -113,7 +113,7 @@ if (simplegeo.Client === undefined) {
        * Use the SimpleGeo API to get an estimate of the user's location
        * by using the IP address of the request.
        * @param [ipAddress] an IP address to use instead of the request's IP address
-       * @param callback
+       * @param callback See {@link callbacks}.
        */
       getLocationFromIP: function(ipAddress, callback) {
           var path;
@@ -145,7 +145,7 @@ if (simplegeo.Client === undefined) {
        * the user to approve). If that fails or the user denies the request,
        * fall back to doing an IP based lookup for the location
        * @param [options]
-       * @param callback
+       * @param callback See {@link callbacks}.
        */
       getLocation: function(options, callback) {
         var self = this;
