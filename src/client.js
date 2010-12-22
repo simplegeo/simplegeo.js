@@ -130,8 +130,10 @@ if (simplegeo.Client === undefined) {
                   var o = {
                       coords: {
                         latitude: data.geometry.coordinates[1],
-                        longitude: data.geometry.coordinates[0]
+                        longitude: data.geometry.coordinates[0],
+                        accuracy: 100000
                       },
+                      timestamp: new Date(),
                       source: "simplegeo"
                   }
 
