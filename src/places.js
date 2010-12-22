@@ -14,9 +14,8 @@ simplegeo.PlacesClient.prototype = new simplegeo.Client();
  * Search for places
  * @param lat
  * @param lon
- * @param [options]
- * @param [options.q]
- * @param [options.category]
+ * @param [options] See the <a href='http://simplegeo.com/docs/api-endpoints/simplegeo-places#search'>SimpleGeo Places documentation</a>
+ *                  for the available options.
  * @param callback See {@link callbacks}.
  */
 simplegeo.PlacesClient.prototype.search = function(lat, lon, options, callback) {
@@ -31,11 +30,9 @@ simplegeo.PlacesClient.prototype.search = function(lat, lon, options, callback) 
 
 /**
  * Search for places
- * @param [ip] Use this ip as the lookup.
- *        Defaults to the IP address of the request
- * @param options
- * @param [options.q]
- * @param [options.category]
+ * @param [ip] Use this ip as the lookup. Defaults to the IP address of the request
+ * @param [options] See the <a href='http://simplegeo.com/docs/api-endpoints/simplegeo-places#search'>SimpleGeo Places documentation</a>
+ *                  for the available options.
  * @param callback See {@link callbacks}.
  */
 simplegeo.PlacesClient.prototype.searchFromIP = function(ip, options, callback) {
@@ -60,9 +57,8 @@ simplegeo.PlacesClient.prototype.searchFromIP = function(ip, options, callback) 
 /**
  * Search for places
  * @param address
- * @param options
- * @param [options.q]
- * @param [options.category]
+ * @param [options] See the <a href='http://simplegeo.com/docs/api-endpoints/simplegeo-places#search'>SimpleGeo Places documentation</a>
+ *                  for the available options.
  * @param callback See {@link callbacks}.
  */
 simplegeo.PlacesClient.prototype.searchFromAddress = function(address, options, callback) {
