@@ -17,6 +17,7 @@ if (simplegeo.Client === undefined) {
       this.port = options.port || '80';
 
       this.apiUrl = 'http://' + this.host + ':' + this.port;
+      this.name = 'Client';
   };
 
   var navigator = window.navigator;

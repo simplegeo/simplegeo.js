@@ -6,6 +6,7 @@
 simplegeo.StorageClient = function(token, options) {
   if (!(this instanceof simplegeo.StorageClient)) return new simplegeo.StorageClient(token, options);
   simplegeo.Client.call(this, token, options);
+  this.name = 'StorageClient';
 }
 
 simplegeo.StorageClient.prototype = new simplegeo.Client();

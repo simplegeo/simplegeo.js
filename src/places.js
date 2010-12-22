@@ -7,6 +7,7 @@
 simplegeo.PlacesClient = function(token, options) {
   if (!(this instanceof simplegeo.PlacesClient)) return new simplegeo.PlacesClient(token, options);
   simplegeo.Client.call(this, token, options);
+  this.name = 'PlacesClient';
 }
 
 simplegeo.PlacesClient.prototype = new simplegeo.Client();

@@ -7,6 +7,7 @@
 simplegeo.ContextClient = function(token, options) {
   if (!(this instanceof simplegeo.ContextClient)) return new simplegeo.ContextClient(token, options);
   simplegeo.Client.call(this, token, options);
+  this.name = 'ContextClient';
 }
 
 simplegeo.ContextClient.prototype = new simplegeo.Client();
