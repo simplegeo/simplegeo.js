@@ -58,7 +58,7 @@ if (simplegeo.Client === undefined) {
 
                     callback(err);
                   } else {
-                    if (window.console) console.error(xhr, ajaxOptions, err);
+                    if (window.console) console.error(path, xhr, textStatus, err);
                     if (self.cors === 'auto') {
                       // Fall back to JSONP if CORS fails
                       self.cors = false;
