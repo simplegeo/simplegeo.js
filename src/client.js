@@ -16,8 +16,12 @@ if (simplegeo.Client === undefined) {
       this.host = options.host || 'api.simplegeo.com';
       this.port = options.port || '80';
 
-      var jqueryVersion = parseFloat($.fn.jquery.match(/^[0-9]+\.[0-9]+/)[0])
-      this.cors = options.cors || (jqueryVersion >= 1.4 ? 'auto' : false);
+      var jqueryVersion = parseFloat($.fn.jquery.match(/^[0-9]+\.[0-9]+/)[0]),
+          jqueryMin = $.fn.jquerymin;
+      if (options.cors && jqueryMin) {
+        throw new Error("You cannot use CORS unless you use the jQuery version of the SimpleGeo client");
+      }
+      this.cors = options.cors || ((!jqueryMin && jqueryVersion >= 1.4) ? 'auto' : false);
 
       this.apiUrl = 'http://' + this.host + ':' + this.port;
       this.name = 'Client';

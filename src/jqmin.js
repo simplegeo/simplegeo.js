@@ -20,7 +20,7 @@ var jsc = now(),
     r20 = /%20/g,
     toString = Object.prototype.toString,
     jQuery = {
-    fn: {jquery: '1.4.2-min'},
+    fn: {jquery: '1.4.2-min', jquerymin: true},
 
     // See test/unit/core.js for details concerning isFunction.
     // Since version 1.3, DOM methods and functions like alert
