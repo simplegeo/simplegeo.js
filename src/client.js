@@ -130,7 +130,7 @@ if (simplegeo.Client === undefined) {
        */
       getFeatureCategories: function(handle, callback) {
           var path = "/1.0/features/categories.json";
-          return this.request(path, options, callback);
+          return this.request(path, {}, callback);
       },
 
       /**
