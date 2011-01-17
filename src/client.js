@@ -115,6 +115,25 @@ if (simplegeo.Client === undefined) {
       },
 
       /**
+       * Returns a list of the available feature categories.
+       * @param [options]
+       * @param callback See {@link callbacks}. Example response data:
+       * <blockquote><pre>[
+       *   {
+       *     category: "Administrative",
+       *     category_id: "10100100",
+       *     type: "Region",
+       *     subcategory: "Consolidated City",
+       *   },
+       *   ...
+       * ]</pre></blockquote>
+       */
+      getFeatureCategories: function(handle, callback) {
+          var path = "/1.0/features/categories.json";
+          return this.request(path, options, callback);
+      },
+
+      /**
        * Use the navigator.geolocation API to get updates about the location.
        * If the user denys the applications request for location information,
        * and error will be fired to the callback.
