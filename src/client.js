@@ -35,40 +35,51 @@ if (simplegeo.Client === undefined) {
       requestCORS: function(path, data, callback) {
           var self = this;
           data.token = this.token;
-          $.ajax({
-              url: this.apiUrl + path,
-              dataType: 'json',
-              data: data,
-              success: function(response) {
-                  callback(null, response);
-              },
-              error: function(xhr, textStatus, err) {
-                  // err will be undefined if this is an HTTP error
-                  if (!err) {
-                    var err = {
-                      error: true,
-                      code: xhr.status
-                    }
+          try {
+            $.ajax({
+                url: this.apiUrl + path,
+                dataType: 'json',
+                data: data,
+                success: function(response) {
+                    callback(null, response);
+                },
+                error: function(xhr, textStatus, err) {
+                    // err will be undefined if this is an HTTP error
+                    if (!err) {
+                      var err = {
+                        error: true,
+                        code: xhr.status
+                      }
 
-                    try {
-                      err.message = JSON.parse(responseText).message;
-                    } catch (e) {
-                      err.message = xhr.statusText;
-                    }
+                      try {
+                        err.message = JSON.parse(responseText).message;
+                      } catch (e) {
+                        err.message = xhr.statusText;
+                      }
 
-                    callback(err);
-                  } else {
-                    if (window.console) console.error(path, xhr, textStatus, err);
-                    if (self.cors === 'auto') {
-                      // Fall back to JSONP if CORS fails
-                      self.cors = false;
-                      self.requestJSONP(path, data, callback);
-                    } else {
                       callback(err);
+                    } else {
+                      if (window.console) console.error(path, xhr, textStatus, err);
+                      if (self.cors === 'auto') {
+                        // Fall back to JSONP if CORS fails
+                        self.cors = false;
+                        self.requestJSONP(path, data, callback);
+                      } else {
+                        callback(err);
+                      }
                     }
-                  }
-              }
-          });
+                }
+            });
+          } catch (err) {
+            if (window.console) console.error(path, xhr, textStatus, err);
+            if (self.cors === 'auto') {
+              // Fall back to JSONP if CORS fails
+              self.cors = false;
+              self.requestJSONP(path, data, callback);
+            } else {
+              throw err;
+            }
+          }
       },
 
       requestJSONP: function(path, data, callback) {
