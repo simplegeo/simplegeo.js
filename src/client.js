@@ -128,7 +128,7 @@ if (simplegeo.Client === undefined) {
        *   ...
        * ]</pre></blockquote>
        */
-      getFeatureCategories: function(handle, callback) {
+      getFeatureCategories: function(callback) {
           var path = "/1.0/features/categories.json";
           return this.request(path, {}, callback);
       },
