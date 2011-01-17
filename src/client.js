@@ -15,6 +15,7 @@ if (simplegeo.Client === undefined) {
       this.options = options;
       this.host = options.host || 'api.simplegeo.com';
       this.port = options.port || '80';
+      this.cors = options.cors || 'auto';
 
       this.apiUrl = 'http://' + this.host + ':' + this.port;
       this.name = 'Client';
@@ -24,6 +25,36 @@ if (simplegeo.Client === undefined) {
 
   simplegeo.Client.prototype = {
       request: function(path, data, callback) {
+        if (this.cors) {
+          this.requestCORS(path, data, callback);
+        } else {
+          this.requestJSONP(path, data, callback);
+        }
+      },
+
+      requestCORS: function(path, data, callback) {
+          var self = this;
+          data.token = this.token;
+          $.ajax({
+              url: this.apiUrl + path,
+              dataType: 'json',
+              data: data,
+              success: function(response) {
+                  callback(null, response);
+              },
+              error: function(xhr, ajaxOptions, err) {
+                  if (self.cors === 'auto') {
+                    // Fall back to JSONP if CORS fails
+                    self.cors = false;
+                    self.requestJSONP(path, data, callback);
+                  } else {
+                    callback(err);
+                  }
+              }
+          });
+      },
+
+      requestJSONP: function(path, data, callback) {
           data.token = this.token;
           data = $.param(data) + '&callback=?';
           $.ajax({
