@@ -15,7 +15,9 @@ if (simplegeo.Client === undefined) {
       this.options = options;
       this.host = options.host || 'api.simplegeo.com';
       this.port = options.port || '80';
-      this.cors = options.cors || 'auto';
+
+      var jqueryVersion = parseFloat($.fn.jquery.match(/^[0-9]+\.[0-9]+/)[0])
+      this.cors = options.cors || (jqueryVersion >= 1.4 ? 'auto' : false);
 
       this.apiUrl = 'http://' + this.host + ':' + this.port;
       this.name = 'Client';
