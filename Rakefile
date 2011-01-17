@@ -5,6 +5,7 @@ require 'erb'
 ROOT = File.expand_path(File.dirname(__FILE__))
 
 def render(src, dest, includes)
+  puts "- render(#{src}, #{dest}, #{includes})"
   template = ERB.new(IO.readlines(src).to_s)
   f = File.new(dest, 'w')
 
@@ -14,6 +15,7 @@ def render(src, dest, includes)
 end
 
 def combine(src, dest)
+  puts "- combine(#{src}, #{dest})"
   require "sprockets"
   
   secretary = Sprockets::Secretary.new(
