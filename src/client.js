@@ -42,13 +42,30 @@ if (simplegeo.Client === undefined) {
               success: function(response) {
                   callback(null, response);
               },
-              error: function(xhr, ajaxOptions, err) {
-                  if (self.cors === 'auto') {
-                    // Fall back to JSONP if CORS fails
-                    self.cors = false;
-                    self.requestJSONP(path, data, callback);
-                  } else {
+              error: function(xhr, textStatus, err) {
+                  // err will be undefined if this is an HTTP error
+                  if (!err) {
+                    var err = {
+                      error: true,
+                      code: xhr.status
+                    }
+
+                    try {
+                      err.message = JSON.parse(responseText).message;
+                    } catch (e) {
+                      err.message = xhr.statusText;
+                    }
+
                     callback(err);
+                  } else {
+                    if (window.console) console.error(xhr, ajaxOptions, err);
+                    if (self.cors === 'auto') {
+                      // Fall back to JSONP if CORS fails
+                      self.cors = false;
+                      self.requestJSONP(path, data, callback);
+                    } else {
+                      callback(err);
+                    }
                   }
               }
           });
