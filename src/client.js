@@ -116,7 +116,6 @@ if (simplegeo.Client === undefined) {
 
       /**
        * Returns a list of the available feature categories.
-       * @param [options]
        * @param callback See {@link callbacks}. Example response data:
        * <blockquote><pre>[
        *   {
