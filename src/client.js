@@ -165,7 +165,6 @@ if (simplegeo.Client === undefined) {
           }
           if (navigator && navigator.geolocation) {
               navigator.geolocation.watchPosition(function(position) {
-                  position.source = "navigator";
                   callback(null, position);
               }, function(err) {
                   callback(err);
@@ -191,7 +190,6 @@ if (simplegeo.Client === undefined) {
           }
           if (navigator && navigator.geolocation) {
               navigator.geolocation.getCurrentPosition(function(position) {
-                  position.source = "navigator";
                   callback(null, position);
               }, function(err) {
                   callback(err);
