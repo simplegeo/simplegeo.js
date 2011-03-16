@@ -16,9 +16,7 @@ var endpoints = {
   records: '/0.1/records/layer/ids.json',
   history: '/0.1/records/layer/id/history.json',
   nearby: '/0.1/records/layer/nearby/arg.json',
-  nearbyAddress: '/0.1/nearby/address/lat,lon.json',
-  densityDay: '/0.1/density/day/lat,lon.json',
-  densityHour: '/0.1/density/day/hour/lat,lon.json'
+  nearbyAddress: '/0.1/nearby/address/lat,lon.json'
 }
 
 simplegeo.StorageClient.prototype.getRecord = function(layer, id, callback) {
@@ -67,18 +65,5 @@ simplegeo.StorageClient.prototype.getNearbyGeohash = function(layer, geohash, da
 simplegeo.StorageClient.prototype.getNearbyAddress = function(lat, lon, callback) {
     path = endpoints.nearbyAddress;
     path = path.replace('lat', lat).replace('lon', lon);
-    return this.request(path, {}, callback);
-};
-
-simplegeo.StorageClient.prototype.getDensity = function(lat, lon, day, hour, callback) {
-    if (callback === undefined) {
-        callback = hour;
-        hour = undefined;
-        path = endpoints.densityDay;
-        path = path.replace('day', day).replace('lat', lat).replace('lon', lon);
-    } else {
-        path = endpoints.densityHour;
-        path = path.replace('day', day).replace('hour', hour).replace('lat', lat).replace('lon', lon);
-    }
     return this.request(path, {}, callback);
 };
