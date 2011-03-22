@@ -1,5 +1,6 @@
 /**
- * SimpleGeo Storage Client
+ * Create a SimpleGeo Storage Client
+ * @see simplegeo.Client
  * @extends simplegeo.Client
  * @constructor
  */
@@ -15,16 +16,54 @@ var endpoints = {
   record: '/0.1/records/layer/id.json',
   records: '/0.1/records/layer/ids.json',
   history: '/0.1/records/layer/id/history.json',
-  nearby: '/0.1/records/layer/nearby/arg.json',
-  nearbyAddress: '/0.1/nearby/address/lat,lon.json'
+  nearby: '/0.1/records/layer/nearby/arg.json'
 }
 
+/**
+ * Retrieve a record.
+ * @param {String} layer
+ * @param {String} id
+ * @param {Function} callback See {@link callbacks}.
+ * Example response data:
+ * <blockquote><pre>{
+ *   "id": "1",
+ *   "geometry": {
+ *     "coordinates": [
+ *       -105.27742,
+ *       40.016950
+ *     ],
+ *     "type": "Point"
+ *   },
+ *   "properties": {
+ *     "layer": "com.simplegeo.example",
+ *   },
+ *   "type": "Feature",
+ *   "created": 1275929679,
+ *   "layerLink": {
+ *     "href": "http://api.simplegeo.com/0.1/layer/com.simplegeo.example.json"
+ *   },
+ *   "selfLink": {
+ *     "href": "http://api.simplegeo.com/0.1/records/com.simplegeo.example/1.json"
+ *   }
+ * }</pre></blockquote>
+ */
 simplegeo.StorageClient.prototype.getRecord = function(layer, id, callback) {
     path = endpoints.record;
     path = path.replace('layer', layer).replace('id', id);
     return this.request(path, {}, callback);
 };
 
+/**
+ * Retrieve a list of records.
+ * @param {String} layer
+ * @param {Array} ids
+ * @param {Function} callback See {@link callbacks}.
+ * Example response data:
+ * <blockquote><pre>{
+ *   "features":[...],
+ *   "type": "FeatureCollection",
+ * }</pre></blockquote>
+ */
 simplegeo.StorageClient.prototype.getRecords = function(layer, ids, callback) {
     path = endpoints.records;
     idString = ids.join(',');
@@ -32,38 +71,54 @@ simplegeo.StorageClient.prototype.getRecords = function(layer, ids, callback) {
     return this.request(path, {}, callback);
 };
 
-simplegeo.StorageClient.prototype.getHistory = function(layer, id, data, callback) {
+/**
+ * Retrieve the history of a record.
+ * @param {String} layer
+ * @param {String} id
+ * @param {Object} [options] See <a href='http://simplegeo.com/docs/api-endpoints/simplegeo-storage#record-history'>SimpleGeo Storage documentation</a>
+ * @param {Function} callback See {@link callbacks}.
+ * Example response data:
+ * <blockquote><pre>{
+ *   "geometries": [
+ *     {
+ *       "coordinates": [-105.27742, 40.016950],
+ *       "created": 1275929679,
+ *       "type": "Point"
+ *     }
+ *   ],
+ *   "type": "GeometryCollection"
+ * }</pre></blockquote>
+ */
+simplegeo.StorageClient.prototype.getHistory = function(layer, id, options, callback) {
     if (callback === undefined) {
-        callback = data;
-        data = {};
+        callback = options;
+        options = {};
     }
     path = endpoints.history;
     path = path.replace('layer', layer).replace('id', id);
-    return this.request(path, data, callback);
+    return this.request(path, options, callback);
 };
 
-simplegeo.StorageClient.prototype.getNearby = function(layer, lat, lon, data, callback) {
+/**
+ * Query for records near a point.
+ * @param {String} layer
+ * @param {Number} lat
+ * @param {Number} lon
+ * @param {Object} [options] See <a href='http://simplegeo.com/docs/api-endpoints/simplegeo-storage#nearby'>SimpleGeo Storage documentation</a>
+ * @param {Function} callback See {@link callbacks}.
+ * Example response data:
+ * <blockquote><pre>{
+ *   "features":[...],
+ *   "type": "FeatureCollection",
+ *   "next_cursor": "eyJpZCI6IjE="
+ * }</pre></blockquote>
+ */
+simplegeo.StorageClient.prototype.getNearby = function(layer, lat, lon, options, callback) {
     if (callback === undefined) {
-        callback = data;
-        data = {};
+        callback = options;
+        options = {};
     }
     path = endpoints.nearby;
     path = path.replace('layer', layer).replace('arg', lat + ',' + lon);
-    return this.request(path, data, callback);
-};
-
-simplegeo.StorageClient.prototype.getNearbyGeohash = function(layer, geohash, data, callback) {
-    if (callback === undefined) {
-        callback = data;
-        data = {};
-    }
-    path = endpoints.nearby;
-    path = path.replace('layer', layer).replace('arg', geohash);
-    return this.request(path, data, callback);
-};
-
-simplegeo.StorageClient.prototype.getNearbyAddress = function(lat, lon, callback) {
-    path = endpoints.nearbyAddress;
-    path = path.replace('lat', lat).replace('lon', lon);
-    return this.request(path, {}, callback);
+    return this.request(path, options, callback);
 };

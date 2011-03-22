@@ -71,6 +71,7 @@ task :doc do
       'src/client.js',
       'src/context.js',
       'src/places.js',
+      'src/storage.js',
       '-t=vendor/jsdoc-toolkit/templates/jsdoc', '-d=doc'
 end
 
