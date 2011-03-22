@@ -125,6 +125,16 @@ simplegeo.StorageClient.prototype.getNearby = function(layer, lat, lon, options,
     return this.request(path, options, callback);
 };
 
+simplegeo.StorageClient.prototype.getNearbyGeohash = function(layer, geohash, options, callback) {
+    if (callback === undefined) {
+        callback = options;
+        options = {};
+    }
+    path = endpoints.nearby;
+    path = path.replace('layer', layer).replace('arg', geohash);
+    return this.request(path, options, callback);
+};
+
 /**
  * Get the information about a layer.
  * @param {String} layer
