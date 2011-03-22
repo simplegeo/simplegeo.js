@@ -16,7 +16,9 @@ var endpoints = {
   record: '/0.1/records/layer/id.json',
   records: '/0.1/records/layer/ids.json',
   history: '/0.1/records/layer/id/history.json',
-  nearby: '/0.1/records/layer/nearby/arg.json'
+  nearby: '/0.1/records/layer/nearby/arg.json',
+  layers: '/0.1/layers.json',
+  layer: '/0.1/layers/name.json'
 }
 
 /**
@@ -120,5 +122,42 @@ simplegeo.StorageClient.prototype.getNearby = function(layer, lat, lon, options,
     }
     path = endpoints.nearby;
     path = path.replace('layer', layer).replace('arg', lat + ',' + lon);
+    return this.request(path, options, callback);
+};
+
+/**
+ * Get the information about a layer.
+ * @param {String} layer
+ * @param {Function} callback See {@link callbacks}.
+ * Example response data:
+ * <blockquote><pre>{
+ *   "name": "com.simplegeo.example",
+ *   "title": "An Example Layer",
+ *   "description": "Just for an example...",
+ *   "public": false,
+ *   "created": 1299547732,
+ *   "updated": 1299547732
+ * }</pre></blockquote>
+ */
+simplegeo.StorageClient.prototype.getLayer = function(layer, callback) {
+  path = endpoints.layer;
+  path = path.replace('name', layer);
+  return this.request(path, {}, callback);
+};
+
+/**
+ * Get the list of layers accessible to the authenticated user.
+ * @param {Function} callback See {@link callbacks}.
+ * Example response data:
+ * <blockquote><pre>{
+ *   "layers":[...]
+ * }</pre></blockquote>
+ */
+simplegeo.StorageClient.prototype.getLayers = function(options, callback) {
+    if (callback === undefined) {
+        callback = options;
+        options = {};
+    }
+    path = endpoints.layers;
     return this.request(path, options, callback);
 };
