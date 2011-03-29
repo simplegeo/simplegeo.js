@@ -125,6 +125,63 @@ simplegeo.StorageClient.prototype.getNearby = function(layer, lat, lon, options,
     return this.request(path, options, callback);
 };
 
+/**
+ * Query for records near the location of an IP address
+ * @param {String} layer
+ * @param {String} [ip] Use this IP as the lookup.
+ *        Defaults to the IP address of the request if not specified
+ * @param {Object} [options] See <a href='http://simplegeo.com/docs/api-endpoints/simplegeo-storage#nearby'>SimpleGeo Storage documentation</a>
+ * @param {Function} callback See {@link callbacks}.
+ * Example response data:
+ * <blockquote><pre>{
+ *   "features":[...],
+ *   "type": "FeatureCollection",
+ *   "next_cursor": "eyJpZCI6IjE="
+ * }</pre></blockquote>
+ */
+simplegeo.StorageClient.prototype.getNearbyFromIP = function(layer, ip, options, callback) {
+    if (arguments.length === 3) {
+      // Check if the ip or the options were omitted
+      callback = options;
+      if (ip.trim) {
+        options = {};
+      } else {
+        options = ip;
+        ip = 'ip';
+      }
+    } else if (arguments.length === 2) {
+      callback = ip;
+      ip = 'ip';
+      options = {};
+    }
+    path = endpoints.nearby;
+    path = path.replace('layer', layer).replace('arg', ip);
+    return this.request(path, options, callback);
+};
+
+/**
+ * Query for records near an address
+ * @param {String} layer
+ * @param {String} address a mailing address to use as the point for the query.
+ * @param {Object} [options] See <a href='http://simplegeo.com/docs/api-endpoints/simplegeo-storage#nearby'>SimpleGeo Storage documentation</a>
+ * @param {Function} callback See {@link callbacks}.
+ * Example response data:
+ * <blockquote><pre>{
+ *   "features":[...],
+ *   "type": "FeatureCollection",
+ *   "next_cursor": "eyJpZCI6IjE="
+ * }</pre></blockquote>
+ */
+simplegeo.StorageClient.prototype.getNearbyFromAddress = function(layer, address, options, callback) {
+    if (callback === undefined) {
+      callback = options;
+      options = {};
+    }
+    path = endpoints.nearby;
+    path = path.replace('layer', layer).replace('arg', address);
+    return this.request(path, options, callback);
+}
+
 simplegeo.StorageClient.prototype.getNearbyGeohash = function(layer, geohash, options, callback) {
     if (callback === undefined) {
         callback = options;
