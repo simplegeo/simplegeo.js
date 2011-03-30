@@ -15,7 +15,7 @@ if (simplegeo.Client === undefined) {
       this.options = options;
       this.proto = options.proto || 'https';
       this.host = options.host || 'api.simplegeo.com';
-      this.port = options.port || '443';
+      this.port = options.port || (this.proto === 'https' ? '443' : '80');
 
       var jqueryVersion = parseFloat($.fn.jquery.match(/^[0-9]+\.[0-9]+/)[0]),
           jqueryMin = $.fn.jquerymin;
