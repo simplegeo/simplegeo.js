@@ -178,7 +178,8 @@ simplegeo.StorageClient.prototype.getNearbyFromAddress = function(layer, address
       options = {};
     }
     path = endpoints.nearby;
-    path = path.replace('layer', layer).replace('arg', address);
+    path = path.replace('layer', layer).replace('arg', 'address');
+    options.address = address
     return this.request(path, options, callback);
 }
 
