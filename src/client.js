@@ -13,8 +13,9 @@ if (simplegeo.Client === undefined) {
       options = options || {};
       this.token = token;
       this.options = options;
+      this.proto = options.proto || 'https';
       this.host = options.host || 'api.simplegeo.com';
-      this.port = options.port || '80';
+      this.port = options.port || '443';
 
       var jqueryVersion = parseFloat($.fn.jquery.match(/^[0-9]+\.[0-9]+/)[0]),
           jqueryMin = $.fn.jquerymin;
@@ -23,7 +24,7 @@ if (simplegeo.Client === undefined) {
       }
       this.cors = options.cors || ((!jqueryMin && jqueryVersion >= 1.4) ? 'auto' : false);
 
-      this.apiUrl = 'http://' + this.host + ':' + this.port;
+      this.apiUrl = this.proto + '://' + this.host + ':' + this.port;
       this.name = 'Client';
   };
 
