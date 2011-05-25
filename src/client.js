@@ -255,11 +255,7 @@ if (simplegeo.Client === undefined) {
             callback(null, position);
           }
         });
-      },
-
-      getNearbyAddress: function(lat, lon, callback) {
-        var path = "/0.1/nearby/address/" + lat + "," + lon + ".json";
-        return this.request(path, {}, callback);
       }
+
   };
 }
