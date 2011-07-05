@@ -13,6 +13,29 @@ simplegeo.ContextClient = function(token, options) {
 simplegeo.ContextClient.prototype = new simplegeo.Client();
 
 /**
+ * Retrieve table numbers for demographics data.
+ * @param {String} q Search query
+ * @param {Function} callback See {@link callbacks}.
+ * Example response data:
+ * <blockquote><pre>[
+ * ["B06010", 
+ *   [ "PLACE OF BIRTH BY INDIVIDUAL INCOME IN THE PAST 12 MONTHS (IN 2009 INFLATION-ADJUSTED DOLLARS) IN THE UNITED STATES", 
+ *     "Universe:  Population 15 years and over in the United States"],
+ *   [
+ *     ["No income ", "B06010035"],
+ *     ["With income:", "B06010036"],
+ *     ...
+ *     ["No income ", "B06010002"]
+ *   ]
+ * ],...]</pre></blockquote>
+ *
+ */
+simplegeo.ContextClient.prototype.searchDemographicTables = function(q, callback) {
+  var path = "/1.0/context/demographics/search.json";
+  return this.request(path, {q: q}, callback);
+}
+
+/**
  * Retrieve context information for the location.
  * @param {Number} lat
  * @param {Number} lon
