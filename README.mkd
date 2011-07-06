@@ -4,17 +4,17 @@ Welcome to our Javascript SDK.
 
 This repo includes the uncompressed version of simplegeo.js. Please use the compressed version, which is linked below. There are four files, one for each SimpleGeo product, and one that encompasses them all:
 
-```http://cdn.simplegeo.com/js/1.3/simplegeo.places.min.js
-http://cdn.simplegeo.com/js/1.3/simplegeo.context.min.js
-http://cdn.simplegeo.com/js/1.3/simplegeo.storage.min.js
-http://cdn.simplegeo.com/js/1.3/simplegeo.all.min.js```
+    http://cdn.simplegeo.com/js/1.3/simplegeo.places.min.js
+    http://cdn.simplegeo.com/js/1.3/simplegeo.context.min.js
+    http://cdn.simplegeo.com/js/1.3/simplegeo.storage.min.js
+    http://cdn.simplegeo.com/js/1.3/simplegeo.all.min.js
 
 If you are using jQuery on your website, you can import a smaller version of the library:
 
-```http://cdn.simplegeo.com/js/1.3/simplegeo.places.jq.min.js
-http://cdn.simplegeo.com/js/1.3/simplegeo.context.jq.min.js
-http://cdn.simplegeo.com/js/1.3/simplegeo.storage.jq.min.js
-http://cdn.simplegeo.com/js/1.3/simplegeo.all.jq.min.js```
+    http://cdn.simplegeo.com/js/1.3/simplegeo.places.jq.min.js
+    http://cdn.simplegeo.com/js/1.3/simplegeo.context.jq.min.js
+    http://cdn.simplegeo.com/js/1.3/simplegeo.storage.jq.min.js
+    http://cdn.simplegeo.com/js/1.3/simplegeo.all.jq.min.js
 
 Here are some other useful links to get you started:
 
