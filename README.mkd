@@ -1,0 +1,9 @@
+# simplegeo.js
+
+This is our Javascript SDK. Here are some useful links:
+
+* [https://simplegeo.com/docs/clients-code-libraries/javascript-sdk](Client setup, introduction, JSONP tokens)
+* [https://simplegeo.com/docs/tutorials/javascript](Javascript tutorials)
+* [https://github.com/simplegeo/simplegeo](SimpleGeo Node.js module)
+
+If you have any questions about using this client, please email [andrew@simplegeo.com].
