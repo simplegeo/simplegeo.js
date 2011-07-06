@@ -1,0 +1,114 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">/**
+<span class='line'>  2</span>  * Create a SimpleGeo Context Client
+<span class='line'>  3</span>  * @see simplegeo.Client
+<span class='line'>  4</span>  * @extends simplegeo.Client
+<span class='line'>  5</span>  * @constructor
+<span class='line'>  6</span>  */</span><span class="WHIT">
+<span class='line'>  7</span> </span><span class="NAME">simplegeo.ContextClient</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">token</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>  8</span> </span><span class="WHIT">  </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="WHIT"> </span><span class="KEYW">instanceof</span><span class="WHIT"> </span><span class="NAME">simplegeo.ContextClient</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">simplegeo.ContextClient</span><span class="PUNC">(</span><span class="NAME">token</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>  9</span> </span><span class="WHIT">  </span><span class="NAME">simplegeo.Client.call</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">token</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 10</span> </span><span class="WHIT">  </span><span class="NAME">this.name</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'ContextClient'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 11</span> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 12</span> 
+<span class='line'> 13</span> </span><span class="NAME">simplegeo.ContextClient.prototype</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">simplegeo.Client</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 14</span> 
+<span class='line'> 15</span> </span><span class="COMM">/**
+<span class='line'> 16</span>  * Retrieve table numbers for demographics data.
+<span class='line'> 17</span>  * @param {String} q Search query
+<span class='line'> 18</span>  * @param {Function} callback See {@link callbacks}.
+<span class='line'> 19</span>  * Example response data:
+<span class='line'> 20</span>  * &lt;blockquote>&lt;pre>[
+<span class='line'> 21</span>  * ["B06010", 
+<span class='line'> 22</span>  *   [ "PLACE OF BIRTH BY INDIVIDUAL INCOME IN THE PAST 12 MONTHS (IN 2009 INFLATION-ADJUSTED DOLLARS) IN THE UNITED STATES", 
+<span class='line'> 23</span>  *     "Universe:  Population 15 years and over in the United States"],
+<span class='line'> 24</span>  *   [
+<span class='line'> 25</span>  *     ["No income ", "B06010035"],
+<span class='line'> 26</span>  *     ["With income:", "B06010036"],
+<span class='line'> 27</span>  *     ...
+<span class='line'> 28</span>  *     ["No income ", "B06010002"]
+<span class='line'> 29</span>  *   ]
+<span class='line'> 30</span>  * ],...]&lt;/pre>&lt;/blockquote>
+<span class='line'> 31</span>  *
+<span class='line'> 32</span>  */</span><span class="WHIT">
+<span class='line'> 33</span> </span><span class="NAME">simplegeo.ContextClient.prototype.searchDemographicTables</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">q</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">callback</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 34</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">path</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"/1.0/context/demographics/search.json"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 35</span> </span><span class="WHIT">  </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.request</span><span class="PUNC">(</span><span class="NAME">path</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="NAME">q</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">q</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">callback</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 36</span> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 37</span> 
+<span class='line'> 38</span> </span><span class="COMM">/**
+<span class='line'> 39</span>  * Retrieve context information for the location.
+<span class='line'> 40</span>  * @param {Number} lat
+<span class='line'> 41</span>  * @param {Number} lon
+<span class='line'> 42</span>  * @param {Function} callback See {@link callbacks}.
+<span class='line'> 43</span>  * Example response data:
+<span class='line'> 44</span>  * &lt;blockquote>&lt;pre>{
+<span class='line'> 45</span>  *   query: {
+<span class='line'> 46</span>  *     latitude: 40.01695,
+<span class='line'> 47</span>  *     longitude: -105.27742
+<span class='line'> 48</span>  *   },
+<span class='line'> 49</span>  *   timestamp: 1292958383.954,
+<span class='line'> 50</span>  *   features: [...],
+<span class='line'> 51</span>  *   demographics: {metro_score: 9}
+<span class='line'> 52</span>  * }&lt;/pre>&lt;/blockquote>
+<span class='line'> 53</span>  *
+<span class='line'> 54</span>  */</span><span class="WHIT">
+<span class='line'> 55</span> </span><span class="NAME">simplegeo.ContextClient.prototype.getContext</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">lat</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">lon</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">callback</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 56</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">path</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"/1.0/context/"</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">lat</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">","</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">lon</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">".json"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 57</span> </span><span class="WHIT">  </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.request</span><span class="PUNC">(</span><span class="NAME">path</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">callback</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 58</span> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 59</span> 
+<span class='line'> 60</span> </span><span class="COMM">/**
+<span class='line'> 61</span>  * Retrieve context information for the location of an IP address.
+<span class='line'> 62</span>  * @param {String} [ip] Use this ip as the lookup.
+<span class='line'> 63</span>  *        Defaults to the IP address of the request if not specified.
+<span class='line'> 64</span>  * @param {Function} callback See {@link callbacks}.
+<span class='line'> 65</span>  * Example response data:
+<span class='line'> 66</span>  * &lt;blockquote>&lt;pre>{
+<span class='line'> 67</span>  *   query: {
+<span class='line'> 68</span>  *     latitude: 37.4192,
+<span class='line'> 69</span>  *     longitude: -122.0574,
+<span class='line'> 70</span>  *     ip: "74.125.224.16"
+<span class='line'> 71</span>  *   },
+<span class='line'> 72</span>  *   timestamp: 1292958831.291,
+<span class='line'> 73</span>  *   features: [...],
+<span class='line'> 74</span>  *   demographics: {metro_score: 10}
+<span class='line'> 75</span>  * }&lt;/pre>&lt;/blockquote>
+<span class='line'> 76</span>  */</span><span class="WHIT">
+<span class='line'> 77</span> </span><span class="NAME">simplegeo.ContextClient.prototype.getContextFromIP</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">ip</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">callback</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 78</span> </span><span class="WHIT">  </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">callback</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">undefined</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 79</span> </span><span class="WHIT">    </span><span class="NAME">callback</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">ip</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 80</span> </span><span class="WHIT">    </span><span class="NAME">ip</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'ip'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 81</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 82</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">path</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"/1.0/context/"</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">ip</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">".json"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 83</span> </span><span class="WHIT">  </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.request</span><span class="PUNC">(</span><span class="NAME">path</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">callback</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 84</span> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 85</span> 
+<span class='line'> 86</span> </span><span class="COMM">/**
+<span class='line'> 87</span>  * Retrieve context information for an address
+<span class='line'> 88</span>  * @param {String} address a mailing address to use as the point for the query.
+<span class='line'> 89</span>  * @param {Function} callback See {@link callbacks}.
+<span class='line'> 90</span>  * Example response data:
+<span class='line'> 91</span>  * &lt;blockquote>&lt;pre>{
+<span class='line'> 92</span>  *   query: {
+<span class='line'> 93</span>  *     latitude: 37.772555,
+<span class='line'> 94</span>  *     longitude: -122.405978,
+<span class='line'> 95</span>  *     address: "41 Decatur Street, San Francisco, CA"
+<span class='line'> 96</span>  *   },
+<span class='line'> 97</span>  *   timestamp: 1292959054.122,
+<span class='line'> 98</span>  *   features: [...],
+<span class='line'> 99</span>  *   demographics: {metro_score: 10}
+<span class='line'>100</span>  * }&lt;/pre>&lt;/blockquote>
+<span class='line'>101</span>  */</span><span class="WHIT">
+<span class='line'>102</span> </span><span class="NAME">simplegeo.ContextClient.prototype.getContextFromAddress</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">address</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">callback</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>103</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">path</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"/1.0/context/address.json"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>104</span> </span><span class="WHIT">  </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.request</span><span class="PUNC">(</span><span class="NAME">path</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="NAME">address</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">address</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">callback</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>105</span> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>106</span> 
+<span class='line'>107</span> </span></pre></body></html>

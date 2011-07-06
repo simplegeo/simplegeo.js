@@ -1,0 +1,50 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">simplegeo</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">window.simplegeo</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>  2</span> 
+<span class='line'>  3</span> </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">simplegeo</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">undefined</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>  5</span>    * The top-level SimpleGeo namespace. All Clients are registered on
+<span class='line'>  6</span>    * this object.
+<span class='line'>  7</span>    *
+<span class='line'>  8</span>    * @namespace
+<span class='line'>  9</span>    */</span><span class="WHIT">
+<span class='line'> 10</span> </span><span class="WHIT">  </span><span class="NAME">simplegeo</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 11</span> 
+<span class='line'> 12</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 13</span>    * (Documentation only, not a namespace).
+<span class='line'> 14</span>    * &lt;p>Callback functions are used for most of the methods on each of the
+<span class='line'> 15</span>    * Clients. Every callback function should be defined as:&lt;/p>
+<span class='line'> 16</span>    *
+<span class='line'> 17</span>    * &lt;blockquote>&lt;code>function(err, data) { ... }&lt;/code>&lt;/blockquote>
+<span class='line'> 18</span>    *
+<span class='line'> 19</span>    * &lt;p>If there is an error, the client will call the callback with only
+<span class='line'> 20</span>    * the error:&lt;/p>
+<span class='line'> 21</span>    *
+<span class='line'> 22</span>    * &lt;blockquote>&lt;code>callback(err);&lt;/code>&lt;/blockquote>
+<span class='line'> 23</span>    *
+<span class='line'> 24</span>    * &lt;p>If no error occured, the callback will be called with only the
+<span class='line'> 25</span>    * data:&lt;/p>
+<span class='line'> 26</span>    *
+<span class='line'> 27</span>    * &lt;blockquote>&lt;code>callback(null, data);&lt;/code>&lt;/blockquote>
+<span class='line'> 28</span>    *
+<span class='line'> 29</span>    * Here is an example of how your callback should look for each function:
+<span class='line'> 30</span>    *
+<span class='line'> 31</span>    * &lt;blockquote>&lt;pre>client.getLocation(function(err, position) {
+<span class='line'> 32</span>    *   if (err) {
+<span class='line'> 33</span>    *     // Do something with the error
+<span class='line'> 34</span>    *   } else {
+<span class='line'> 35</span>    *     // Do something with the data
+<span class='line'> 36</span>    *   }
+<span class='line'> 37</span>    * });&lt;/pre>&lt;/blockquote>
+<span class='line'> 38</span>    *
+<span class='line'> 39</span>    * @name callbacks
+<span class='line'> 40</span>    * @namespace
+<span class='line'> 41</span>    */</span><span class="WHIT">
+<span class='line'> 42</span> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 43</span> </span></pre></body></html>
