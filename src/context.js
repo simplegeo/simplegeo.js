@@ -89,8 +89,8 @@ simplegeo.ContextClient.prototype.getContextFromIP = function(ip, options, callb
       ip = 'ip';
     } else {
       callback = options;
-      options = {};
     }
+    options = {};
   }
   var path = "/1.0/context/" + ip + ".json";
   return this.request(path, options, callback);
