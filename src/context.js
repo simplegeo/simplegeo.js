@@ -55,6 +55,10 @@ simplegeo.ContextClient.prototype.searchDemographicTables = function(q, callback
  *
  */
 simplegeo.ContextClient.prototype.getContext = function(lat, lon, options, callback) {
+  if (callback === undefined) {
+    callback = options;
+    options = {};
+  }
   var path = "/1.0/context/" + lat + "," + lon + ".json";
   return this.request(path, options, callback);
 }
@@ -80,8 +84,13 @@ simplegeo.ContextClient.prototype.getContext = function(lat, lon, options, callb
  */
 simplegeo.ContextClient.prototype.getContextFromIP = function(ip, options, callback) {
   if (callback === undefined) {
-    callback = ip;
-    ip = 'ip';
+    if (options === undefined) {
+      callback = ip;
+      ip = 'ip';
+    } else {
+      callback = options;
+      options = {};
+    }
   }
   var path = "/1.0/context/" + ip + ".json";
   return this.request(path, options, callback);
@@ -107,6 +116,10 @@ simplegeo.ContextClient.prototype.getContextFromIP = function(ip, options, callb
  */
 simplegeo.ContextClient.prototype.getContextFromAddress = function(address, options, callback) {
   var path = "/1.0/context/address.json";
+  if (callback === undefined) {
+    callback = options;
+    options = {};
+  }
   options["address"] = address;
   return this.request(path, options, callback);
 }
