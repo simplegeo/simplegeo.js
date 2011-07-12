@@ -39,6 +39,8 @@ simplegeo.ContextClient.prototype.searchDemographicTables = function(q, callback
  * Retrieve context information for the location.
  * @param {Number} lat
  * @param {Number} lon
+ * @param [options] See the <a href='https://simplegeo.com/docs/api-endpoints/simplegeo-context#demographics'>SimpleGeo Context documentation</a>
+ *                  for the available options. Example: <code>{filter: "demographics.acs.B01001"}</code>
  * @param {Function} callback See {@link callbacks}.
  * Example response data:
  * <blockquote><pre>{
@@ -52,15 +54,21 @@ simplegeo.ContextClient.prototype.searchDemographicTables = function(q, callback
  * }</pre></blockquote>
  *
  */
-simplegeo.ContextClient.prototype.getContext = function(lat, lon, callback) {
+simplegeo.ContextClient.prototype.getContext = function(lat, lon, options, callback) {
+  if (callback === undefined) {
+    callback = options;
+    options = {};
+  }
   var path = "/1.0/context/" + lat + "," + lon + ".json";
-  return this.request(path, {}, callback);
+  return this.request(path, options, callback);
 }
 
 /**
  * Retrieve context information for the location of an IP address.
  * @param {String} [ip] Use this ip as the lookup.
  *        Defaults to the IP address of the request if not specified.
+ * @param [options] See the <a href='https://simplegeo.com/docs/api-endpoints/simplegeo-context#demographics'>SimpleGeo Context documentation</a>
+ *                  for the available options. Example: <code>{filter: "demographics.acs.B01001"}</code>
  * @param {Function} callback See {@link callbacks}.
  * Example response data:
  * <blockquote><pre>{
@@ -74,18 +82,25 @@ simplegeo.ContextClient.prototype.getContext = function(lat, lon, callback) {
  *   demographics: {metro_score: 10}
  * }</pre></blockquote>
  */
-simplegeo.ContextClient.prototype.getContextFromIP = function(ip, callback) {
+simplegeo.ContextClient.prototype.getContextFromIP = function(ip, options, callback) {
   if (callback === undefined) {
-    callback = ip;
-    ip = 'ip';
+    if (options === undefined) {
+      callback = ip;
+      ip = 'ip';
+    } else {
+      callback = options;
+    }
+    options = {};
   }
   var path = "/1.0/context/" + ip + ".json";
-  return this.request(path, {}, callback);
+  return this.request(path, options, callback);
 }
 
 /**
  * Retrieve context information for an address
  * @param {String} address a mailing address to use as the point for the query.
+ * @param [options] See the <a href='https://simplegeo.com/docs/api-endpoints/simplegeo-context#demographics'>SimpleGeo Context documentation</a>
+ *                  for the available options. Example: <code>{filter: "demographics.acs.B01001"}</code>
  * @param {Function} callback See {@link callbacks}.
  * Example response data:
  * <blockquote><pre>{
@@ -99,8 +114,13 @@ simplegeo.ContextClient.prototype.getContextFromIP = function(ip, callback) {
  *   demographics: {metro_score: 10}
  * }</pre></blockquote>
  */
-simplegeo.ContextClient.prototype.getContextFromAddress = function(address, callback) {
+simplegeo.ContextClient.prototype.getContextFromAddress = function(address, options, callback) {
   var path = "/1.0/context/address.json";
-  return this.request(path, {address: address}, callback);
+  if (callback === undefined) {
+    callback = options;
+    options = {};
+  }
+  options["address"] = address;
+  return this.request(path, options, callback);
 }
 
