@@ -42,12 +42,11 @@ if (simplegeo.Client === undefined) {
       requestCORS: function(path, data, callback) {
           var self = this;
           data.token = this.token;
-          data = $.param(data, true)
           try {
             $.ajax({
                 url: this.apiUrl + path,
                 dataType: 'json',
-                data: data,
+                data: $.param(data, true),
                 success: function(response) {
                     callback(null, response);
                 },
