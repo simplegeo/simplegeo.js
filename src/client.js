@@ -91,7 +91,7 @@ if (simplegeo.Client === undefined) {
 
       requestJSONP: function(path, data, callback) {
           data.token = this.token;
-          data = $.param(data) + '&callback=?';
+          data = $.param(data, true) + '&callback=?';
           $.ajax({
               url: this.apiUrl + path,
               dataType: 'json',
