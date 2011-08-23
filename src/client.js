@@ -46,7 +46,8 @@ if (simplegeo.Client === undefined) {
             $.ajax({
                 url: this.apiUrl + path,
                 dataType: 'json',
-                data: $.param(data, true),
+                data: data,
+                traditional: true,
                 success: function(response) {
                     callback(null, response);
                 },
