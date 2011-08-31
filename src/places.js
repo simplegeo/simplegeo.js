@@ -8,6 +8,7 @@ simplegeo.PlacesClient = function(token, options) {
   if (!(this instanceof simplegeo.PlacesClient)) return new simplegeo.PlacesClient(token, options);
   simplegeo.Client.call(this, token, options);
   this.name = 'PlacesClient';
+  this.placesVersion = '/1.0'
 }
 
 simplegeo.PlacesClient.prototype = new simplegeo.Client();
@@ -30,7 +31,7 @@ simplegeo.PlacesClient.prototype.search = function(lat, lon, options, callback) 
     callback = options;
     options = {};
   }
-  var path = "/1.0/places/lat,lon.json";
+  var path = this.placesVersion + "/places/lat,lon.json";
   path = path.replace('lat', lat).replace('lon', lon);
   return this.request(path, options, callback);
 }
@@ -58,7 +59,7 @@ simplegeo.PlacesClient.prototype.searchFromIP = function(ip, options, callback) 
     ip = 'ip';
     options = {};
   }
-  var path = "/1.0/places/" + ip + ".json";
+  var path = this.placesVersion + "/places/" + ip + ".json";
   return this.request(path, options, callback);
 }
 
@@ -74,8 +75,65 @@ simplegeo.PlacesClient.prototype.searchFromAddress = function(address, options, 
     callback = options;
     options = {};
   }
-  var path = "/1.0/places/address.json";
+  var path = this.placesVersion + "/places/address.json";
   options.address = address;
   return this.request(path, options, callback);
 }
 
+
+
+/**
+ * Create a SimpleGeo Places 1.2 Client
+ * @see simplegeo.PlacesClient
+ * @extends simplegeo.PlacesClient
+ * @constructor
+ */
+simplegeo.Places12Client = function(token, options) {
+  if (!(this instanceof simplegeo.Places12Client)) return new simplegeo.Places12Client(token, options);
+  simplegeo.PlacesClient.call(this, token, options);
+  this.name = 'Places12Client';
+  this.placesVersion = '/1.2'
+}
+
+simplegeo.Places12Client.prototype = new simplegeo.PlacesClient();
+
+/**
+ * Search for places
+ * @param swLat
+ * @param swLon
+ * @param neLat
+ * @param neLon
+ * @param [options] See the <a href='http://simplegeo.com/docs/api-endpoints/simplegeo-places#search'>SimpleGeo Places documentation</a>
+ *                  for the available options. Example: <code>{q: "Starbucks", radius: 10}</code>
+ * @param callback See {@link callbacks}. Example response data:
+ * <blockquote><pre>{
+ *   total: 25,
+ *   type: "FeatureCollection",
+ *   features: [...]
+ * }</pre></blockquote>
+ */
+simplegeo.Places12Client.prototype.searchFromBBox = function(swLat, swLon, neLat, neLon, options, callback) {
+  if (callback === undefined) {
+    callback = options;
+    options = {};
+  }
+  var path = this.placesVersion + "/places/swlat,swlon,nelat,nelon.json";
+  path = path.replace('swlat', swLat).replace('swlon', swLon).replace('nelat', neLat).replace('nelon', neLon)
+  return this.request(path, options, callback);
+}
+
+/**
+ * Fulltext search for places.
+ * @param options See the <a href='http://simplegeo.com/docs/api-endpoints/simplegeo-places#search'>SimpleGeo Places documentation</a>
+ *                  for the available options. Example: <code>{q: "Starbucks"}</code>
+ * @param callback See {@link callbacks}. Example response data:
+ * <blockquote><pre>{
+ *   total: 25,
+ *   type: "FeatureCollection",
+ *   features: [...]
+ * }</pre></blockquote>
+ */
+simplegeo.Places12Client.prototype.searchText = function(options, callback) {
+  var path = this.placesVersion + "/places/search.json";
+  return this.request(path, options, callback);
+}

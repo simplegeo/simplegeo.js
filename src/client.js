@@ -114,7 +114,7 @@ if (simplegeo.Client === undefined) {
 
       /**
        * Returns a given feature.
-       * @param handle A SimpleGeo handle for an object (looks like "SG_...")
+       * @param handle A SimpleGeo handle for an object (looks like "SG_...") or a place id for Places 1.2.
        * @param [options]
        * @param callback See {@link callbacks}. Example response data:
        * <blockquote><pre>{
@@ -129,7 +129,7 @@ if (simplegeo.Client === undefined) {
             callback = options;
             options = {};
           }
-          var path = "/1.0/features/" + handle + ".json";
+          var path = (this.placesVersion || "/1.0") + "/features/" + handle + ".json";
           return this.request(path, options, callback);
       },
 
