@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - simplegeo</title>
+		<title>JsDoc Reference - simplegeo.Places12Client</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -212,25 +212,27 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Namespace simplegeo
+				Class simplegeo.Places12Client
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
 			<p class="description">
 				
+				<br />Extends
+					<a href="../symbols/simplegeo.PlacesClient.html">simplegeo.PlacesClient</a>.<br />
 				
 			
 				
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/src_core.js.html">core.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/src_places.js.html">places.js</a>.
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class simplegeo.">
-				<caption>Namespace Summary</caption>
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class simplegeo.Places12Client.">
+				<caption>Class Summary</caption>
 				<thead>
 					<tr>
 						<th scope="col">Constructor Attributes</th>
@@ -242,9 +244,9 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/simplegeo.html#constructor">simplegeo</a></b>
+								<b><a href="../symbols/simplegeo.Places12Client.html#constructor">simplegeo.Places12Client</a></b>(token, options)
 							</div>
-							<div class="description">The top-level SimpleGeo namespace.</div>
+							<div class="description">Create a SimpleGeo Places 1.2 Client</div>
 						</td>
 					</tr>
 				</tbody>
@@ -256,6 +258,37 @@ ul.inheritsList
 
 <!-- ============================== methods summary ======================== -->
 			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class simplegeo.Places12Client.">
+					<caption>Method Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Method Attributes</th>
+							<th scope="col">Method Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/simplegeo.Places12Client.html#searchFromBBox">searchFromBBox</a></b>(swLat, swLon, neLat, neLon, options, callback)
+								</div>
+								<div class="description">Search for places</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+				<dl class="inheritsList">
+				<dt>Methods borrowed from class <a href="../symbols/simplegeo.PlacesClient.html">simplegeo.PlacesClient</a>: </dt><dd><a href="../symbols/simplegeo.PlacesClient.html#search">search</a>, <a href="../symbols/simplegeo.PlacesClient.html#searchFromAddress">searchFromAddress</a>, <a href="../symbols/simplegeo.PlacesClient.html#searchFromIP">searchFromIP</a></dd><dt>Methods borrowed from class <a href="../symbols/simplegeo.Client.html">simplegeo.Client</a>: </dt><dd><a href="../symbols/simplegeo.Client.html#getFeature">getFeature</a>, <a href="../symbols/simplegeo.Client.html#getFeatureCategories">getFeatureCategories</a>, <a href="../symbols/simplegeo.Client.html#getLocation">getLocation</a>, <a href="../symbols/simplegeo.Client.html#getLocationFromBrowser">getLocationFromBrowser</a>, <a href="../symbols/simplegeo.Client.html#getLocationFromIP">getLocationFromIP</a>, <a href="../symbols/simplegeo.Client.html#watchLocationFromBrowser">watchLocationFromBrowser</a></dd>
+				</dl>
+				
+			
 <!-- ============================== events summary ======================== -->
 			
 
@@ -263,16 +296,15 @@ ul.inheritsList
 			
 			<div class="details"><a name="constructor"> </a>
 				<div class="sectionTitle">
-					Namespace Detail
+					Class Detail
 				</div>
 				
 				<div class="fixedFont">
-						<b>simplegeo</b>
+						<b>simplegeo.Places12Client</b>(token, options)
 				</div>
 				
 				<div class="description">
-					The top-level SimpleGeo namespace. All Clients are registered on
-this object.
+					Create a SimpleGeo Places 1.2 Client
 					
 				</div>
 				
@@ -280,11 +312,35 @@ this object.
 				
 				
 					
+						<dl class="detailList">
+						<dt class="heading">Parameters:</dt>
+						
+							<dt>
+								 <b>token</b>
+								
+							</dt>
+								<dd></dd>
+						
+							<dt>
+								 <b>options</b>
+								
+							</dt>
+								<dd></dd>
+						
+						</dl>
 					
 					
 					
 					
 					
+					
+					
+						<dl class="detailList">
+						<dt class="heading">See:</dt>
+						
+							<dd><a href="../symbols/simplegeo.PlacesClient.html">simplegeo.PlacesClient</a></dd>
+						
+						</dl>
 					
 
 			</div>
@@ -294,6 +350,83 @@ this object.
 			
 
 <!-- ============================== method details ========================= -->		
+			
+				<div class="sectionTitle">
+					Method Detail
+				</div>
+				
+					<a name="searchFromBBox"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>searchFromBBox</b>(swLat, swLon, neLat, neLon, options, callback)
+					
+					</div>
+					<div class="description">
+						Search for places
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>swLat</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>swLon</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>neLat</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>neLon</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>options</b>
+									<i>Optional</i>
+								</dt>
+								<dd>See the <a href='http://simplegeo.com/docs/api-endpoints/simplegeo-places#search'>SimpleGeo Places documentation</a>
+                 for the available options. Example: <code>{q: "Starbucks", radius: 10}</code></dd>
+							
+								<dt>
+									<b>callback</b>
+									
+								</dt>
+								<dd>See <a href="../symbols/callbacks.html">callbacks</a>. Example response data:
+<blockquote><pre>{
+  total: 25,
+  type: "FeatureCollection",
+  features: [...]
+}</pre></blockquote></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					
+				
 			
 			
 <!-- ============================== event details ========================= -->		
