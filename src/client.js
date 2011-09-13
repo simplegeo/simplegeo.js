@@ -226,7 +226,7 @@ if (simplegeo.Client === undefined) {
                         longitude: data.geometry.coordinates[0],
                         accuracy: 100000
                       },
-                      timestamp: new Date(),
+                      timestamp: new Date().getTime(),
                       source: "simplegeo"
                   }
 
