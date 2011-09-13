@@ -1,0 +1,12 @@
+2011-09-13, Version 1.4
+
+ * Adding demographic search endpoint to js client.
+
+ * Adding options to context calls so we can include parameters like 'filter'.
+
+ * jQuery 1.6 related bug fixes.
+
+ * Support SimpleGeo Places 1.2.
+
+ * Return position.timestamp in getLocation as a number to
+   match what browsers do.
